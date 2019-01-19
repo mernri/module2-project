@@ -1,0 +1,19 @@
+body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: #F5F7FA; }
+
+nav {
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.05); }
+
+.btn-violet {
+  color: #ffffff;
+  background-color: #5C5CFF; }
+
+.btn-blanc {
+  color: #5C5CFF;
+  background-color: #ffffff; }
+
+a {
+  color: #00B7FF; }
+
+/*# sourceMappingURL=style.css.map */

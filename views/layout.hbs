@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Data Stories</title>
+  <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css">
+  <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+
+<body>
+
+  <nav class="navbar navbar-expand-md navbar-light" style="background-color: #FFFFFF;">
+    <div class="nav-logo">
+      <img src="https://img.icons8.com/color/50/000000/flash-on.png">
+      <a class="navbar-brand" href="/"> <b>Data Stories</b></a>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+      aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/"><span class="sr-only">(current)</span></a>
+        </li>
+      </ul>
+      <ul class="navbar-nav navbar-right">
+        {{#if user}}
+        <li class="nav-item">
+          <a class="nav-link" href="/auth/logout">Logout</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/auth/myaccount">My Account</a>
+        </li>
+        {{else}}
+        <li class="nav-item">
+          <a href="/auth/signup" class="btn btn-light btn-blanc" role="button" aria-pressed="true"> Sign Up </a>
+        </li>
+        <li class="nav-item">
+          <a href="/auth/login" class="btn btn-light btn-violet" role="button" aria-pressed="true"> Login </a>
+        </li>
+        {{/if}}
+      </ul>
+    </div>
+  </nav>
+  {{{ body }}}
+
+
+  <!-- SCRIPTS  -->
+  <script src="../bower_components/jquery/dist/jquery.js"></script>
+  <script src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
+  <script src="/javascripts/script.js"></script>
+  <script src="../app.js"></script>
+
+</body>
+
+</html>
