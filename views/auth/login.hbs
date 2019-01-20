@@ -1,30 +1,55 @@
-<h2>Login</h2>
+<div class="login box">
 
-<div class="signup-box">
+  <div class="login text">
+    <h2>Get a free account</h2>
+    <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+      magna aliqua. </p>
+  </div>
 
-  {{!-- START OF FORM --}}
-  <form action="/auth/login" method="POST" id="form-container">
-    <label for="username">Username</label>
-    <input id="username" type="text" name="username" placeholder="JonSnow">
+  <div class="login-content">
 
-    <br><br>
+    <div class="login-image">
+      <img class="pic" src="/images/fogg-welcome-3.png" alt="">
+    </div>
 
-    <label for="password">Password</label>
-    <input id="password" type="password" name="password" placeholder="Your password">
-    <br>
-    {{#if message }}
-    <div class="error-message">{{ message }}</div>
-    {{/if}}
 
-    <br><br>
+    {{!-- START OF FORM --}}
+    <div class="login-form">
 
-    <button>Login</button>
+      <form action="/auth/login" method="POST" id="form-container">
 
-    <p class="account-message">
-      Don't have an account yet?
-      <a href="/auth/signup">Signup</a>
-    </p>
-  </form>
-  {{!-- END OF FORM --}}
+        <div>
+          <label for="username">Username</label>
+          <br>
+
+          <input id="username" type="text" name="username" placeholder="JonSnow">
+
+          <br><br>
+
+          <label for="password">Password</label>
+          <br>
+
+          <input id="password" type="password" name="password" placeholder="Your password">
+        </div>
+
+        <br>
+        {{#if message }}
+        <div class="error-message">{{ message }}</div>
+        {{/if}}
+
+        <br><br>
+
+        <button class="btn btn-light btn-violet" aria-pressed="true">Login</button>
+
+        <p class="account-message">
+          Don't have an account yet?
+          <a href="/auth/signup">Signup</a>
+        </p>
+      </form>
+      {{!-- END OF FORM --}}
+
+    </div>
+
+  </div>
 
 </div>

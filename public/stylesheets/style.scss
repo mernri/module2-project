@@ -1,6 +1,6 @@
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  background-color: #F5F7FA;
+  background-color: #f5f7fa;
 }
 
 nav {
@@ -9,14 +9,66 @@ nav {
 
 .btn-violet {
   color: #ffffff;
-  background-color: #5C5CFF;
+  background-color: #5c5cff;
 }
 
 .btn-blanc {
-  color: #5C5CFF;
+  color: #5c5cff;
   background-color: #ffffff;
 }
 
 a {
-  color: #00B7FF;
+  color: #00b7ff;
+}
+
+// ____ SIGN UP & Login _______ //
+
+.box {
+  background-color: #ffffff;
+  height: 500px;
+  width: 60%;
+  margin: auto;
+  margin-top: 80px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  padding: 30px 30px 25px 30px;
+}
+
+.text {
+  width: 100%;
+  margin: auto;
+  padding-right: 35px;
+}
+
+.login-image {
+  width: 40%;
+  padding-right: 5%;
+  margin: auto;
+}
+
+.pic {
+  width: 100%;
+}
+
+// Make elements disappear on small screens
+@media screen and (max-width: 600px) {
+  .pic {
+    display: none;
+  }
+  .text p {
+    display: none;
+  }
+  .login-image {
+    margin-right: 0%;
+  }
+}
+
+.login-content {
+  display: flex;
+  width: 100%;
+  margin-top: 10%;
+}
+
+.login-form {
+  margin-left:0px;
+  margin: auto;
 }
