@@ -2,34 +2,22 @@
 
   <div class="login text">
     <h2>Get a free account</h2>
-    <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-      magna aliqua. </p>
   </div>
 
   <div class="login-content">
 
-    <div class="login-image">
-      <img class="pic" src="/images/fogg-welcome-3.png" alt="">
-    </div>
-
-
-    {{!-- START OF FORM --}}
     <div class="login-form">
+      {{!-- START OF FORM --}}
 
       <form action="/auth/login" method="POST" id="form-container">
-
         <div>
           <label for="username">Username</label>
           <br>
-
-          <input id="username" type="text" name="username" placeholder="JonSnow">
-
+          <input id="username" class="form-control" type="text" name="username" placeholder="Your username">
           <br><br>
-
           <label for="password">Password</label>
           <br>
-
-          <input id="password" type="password" name="password" placeholder="Your password">
+          <input id="password" class="form-control" type="password" name="password" placeholder="Your password">
         </div>
 
         <br>
@@ -37,7 +25,7 @@
         <div class="error-message">{{ message }}</div>
         {{/if}}
 
-        <br><br>
+        <br>
 
         <button class="btn btn-light btn-violet" aria-pressed="true">Login</button>
 

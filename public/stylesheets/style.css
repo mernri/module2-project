@@ -40,12 +40,8 @@ footer a {
 .text {
   width: 100%;
   margin: auto;
+  text-align: center;
   padding-right: 35px; }
-
-.login-image {
-  width: 40%;
-  padding-right: 5%;
-  margin: auto; }
 
 .pic {
   width: 100%; }
@@ -54,18 +50,27 @@ footer a {
   .pic {
     display: none; }
   .text p {
-    display: none; }
-  .login-image {
-    margin-right: 0%; } }
+    display: none; } }
 
 .login-content {
   display: flex;
   width: 100%;
   margin-top: 10%; }
 
+.signup-content {
+  display: flex;
+  width: 100%;
+  margin-top: 10%; }
+
 .login-form {
   margin-left: 0px;
-  margin: auto; }
+  margin: auto;
+  width: 50%; }
+
+.signup-form {
+  margin-left: 0px;
+  margin: auto;
+  width: 50%; }
 
 .feature-image {
   width: 15%; }

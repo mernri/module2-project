@@ -6,4 +6,9 @@ router.get('/', (req, res, next) => {
   res.render('index');
 });
 
+
+router.get("/datasources", (req, res, next) => {
+  res.render("public-datasources");
+});
+
 module.exports = router;
