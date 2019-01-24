@@ -1,11 +1,8 @@
+// Pour le test HelloAnalytics.html :
+// view ID => 188331003
+// client ID => 315451096739-f5q6rp31jm5db9f4ec5fflq7g793db0m.apps.googleusercontent.com
+
 require("dotenv").config();
-
-
-
-// Commentaire de Rita sur branche Rita 
-
-
-
 
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
