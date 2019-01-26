@@ -11,16 +11,29 @@ body {
 footer {
   height: 100px; }
 
-nav {
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.05); }
+.navbar {
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.05);
+  border: none;
+  height: 9%;
+  background-color: white; }
 
-.btn-violet {
-  color: #ffffff;
-  background-color: #5c5cff; }
+.navbar-nav {
+  list-style: none; }
 
-.btn-blanc {
-  color: #5c5cff;
-  background-color: #ffffff; }
+.navbar-right {
+  padding-right: 20px;
+  padding-top: 5px; }
+
+.navbar-brand b {
+  color: black; }
+
+.navbar-brand {
+  padding-top: 20px; }
+
+.btn-login {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  margin-bottom: 10%; }
 
 a {
   color: #00b7ff; }
