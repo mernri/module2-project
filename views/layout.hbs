@@ -42,8 +42,12 @@
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav navbar-right">
+          {{#if user}}
+          <li><a href="/logout" class="btn btn-default btn-login">Logout</a></li>
+          {{else}}
           <li><a href="/auth/signup">Sign Up</a></li>
           <li><a href="/auth/login" class="btn btn-default btn-login">Login</a></li>
+          {{/if}}
         </ul>
       </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
@@ -58,8 +62,8 @@
   <!-- Latest compiled and minified JavaScript -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
     crossorigin="anonymous"></script>
-  <script src="../javascripts/script.js"></script>
-  <script src="../app.js"></script>
+  <script src="./javascripts/script.js"></script>
+  <script src="./app.js"></script>
 
 </body>
 

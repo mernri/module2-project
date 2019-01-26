@@ -13,7 +13,7 @@ router.get("/login", (req, res, next) => {
 });
 
 router.post("/login", passport.authenticate("local", {
-  successRedirect: "/",
+  successRedirect: "/auth/profile",
   failureRedirect: "/auth/login",
   failureFlash: true,
   passReqToCallback: true
@@ -53,6 +53,18 @@ router.post("/signup", (req, res, next) => {
     .catch(err => {
       res.render("auth/signup", { message: "Something went wrong" });
     })
+  });
+});
+
+// Voir la page de profil
+router.get("/profile", (req, res, next) => {
+  User.findOne({_id: req.user._id}, (err, user) => {
+    console.log(user)
+    if (user) {
+      res.render("auth/profile", { user: user });
+    } else {
+      console.log("erreur");
+    }
   });
 });
 
