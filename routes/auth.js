@@ -12,12 +12,26 @@ router.get("/login", (req, res, next) => {
   res.render("auth/login", { "message": req.flash("error") });
 });
 
+// If login is ok, the user is redirected to his profile
 router.post("/login", passport.authenticate("local", {
   successRedirect: "/auth/profile",
   failureRedirect: "/auth/login",
   failureFlash: true,
   passReqToCallback: true
 }));
+
+// redirects the user to his dashboard
+router.get("/dashboard/ga-metrics", (req, res, next) => {
+  User.findOne({_id: req.user._id}, (err, user) => {
+    console.log(user)
+    if (user) {
+      res.render("auth/dashboard/ga-metrics", { user: user });
+    } else {
+      console.log("erreur");
+    }
+  });
+});
+
 
 router.get("/signup", (req, res, next) => {
   res.render("auth/signup");
