@@ -1,0 +1,79 @@
+<div class="select-datasources box">
+
+  <div class="select-datasources text">
+    <h2>Where do you want us to pick the data from ? </h2>
+    <h3 class="pick-datasources"> Pick your datasources </h3>
+
+  </div>
+
+  <div class="select-datasources-content">
+
+    <div class="select-datasources-form">
+      {{!-- START OF FORM --}}
+
+      <form action="#" method="POST" id="form-container">
+        <div>
+
+          <div class="datasources-connect">
+
+            {{!-- Google connect --}}
+            <div class="datasource">
+              <img src="https://developers.google.com/analytics/images/terms/logo_lockup_analytics_icon_vertical_black_2x.png"
+                class="ga-logo">
+              <div id="embed-api-auth-container"></div>
+
+              {{!-- GOOGLE ANALYTICS AUTHENTIFICATION CHECK --}}
+              <script>
+                (function (w, d, s, g, js, fs) {
+                  g = w.gapi || (w.gapi = {});
+                  g.analytics = {
+                    q: [],
+                    ready: function (f) {
+                      this.q.push(f);
+                    }
+                  };
+                  js = d.createElement(s);
+                  fs = d.getElementsByTagName(s)[0];
+                  js.src = "https://apis.google.com/js/platform.js";
+                  fs.parentNode.insertBefore(js, fs);
+                  js.onload = function () {
+                    g.load("analytics");
+                  };
+                })(window, document, "script");
+              </script>
+
+              <script>
+                gapi.analytics.ready(function () {
+                  /**
+                   * Authorize the user immediately if the user has already granted access.
+                   * If no access has been created, render an authorize button inside the
+                   * element with the ID "embed-api-auth-container".
+                   */
+                  gapi.analytics.auth.authorize({
+                    container: "embed-api-auth-container",
+                    clientid:
+                      "315451096739-f5q6rp31jm5db9f4ec5fflq7g793db0m.apps.googleusercontent.com"
+                  });
+                });
+              </script>
+              {{!-- END OF GOOGLE ANALYTICS AUTHENTIFICATION CHECK --}}
+
+            </div>
+            {{!-- Mailchimp connect --}}
+            <div class="datasource">
+              <img src="http://www.stickpng.com/assets/images/58417f77a6515b1e0ad75a2c.png" class="mc-logo">
+            
+            </div>
+
+          </div>
+
+          <button class="btn btn-light btn-primary validate-step2" aria-pressed="true">Next</button>
+
+      </form>
+      {{!-- END OF FORM --}}
+    </div>
+
+  </div>
+
+
+</div>

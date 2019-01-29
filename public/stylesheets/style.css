@@ -88,4 +88,34 @@ footer a {
 .feature-image {
   width: 15%; }
 
+.pick-datasources {
+  padding-top: 10%;
+  padding-left: 10%;
+  text-align: left; }
+
+.ga-logo {
+  height: 150px; }
+
+.mc-logo {
+  height: 120px;
+  margin-top: 10px; }
+
+.datasource {
+  float: left;
+  clear: none;
+  width: 50%;
+  padding: 20px; }
+
+.datasources-connect {
+  background: #e7e7e7;
+  text-align: center;
+  width: 600px; }
+
+.select-datasources-form {
+  display: inline-block; }
+
+.validate-step2 {
+  margin-top: 10%;
+  margin-left: 20%; }
+
 /*# sourceMappingURL=style.css.map */

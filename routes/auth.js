@@ -32,6 +32,18 @@ router.get("/dashboard/ga-metrics", (req, res, next) => {
   });
 });
 
+// redirects the user to the 2nd page of the dashboard creation to select datasources
+router.get("/dashboard/dashboardDatasources", (req, res, next) => {
+  User.findOne({_id: req.user._id}, (err, user) => {
+    console.log(user)
+    if (user) {
+      res.render("auth/dashboard/dashboardDatasources", { user: user });
+    } else {
+      console.log("erreur");
+    }
+  });
+});
+
 
 router.get("/signup", (req, res, next) => {
   res.render("auth/signup");
