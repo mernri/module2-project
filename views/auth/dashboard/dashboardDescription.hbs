@@ -1,0 +1,42 @@
+<div class="signup box">
+
+  <div class="signup text">
+    <h2>What's your dashboard about ?</h2>
+
+  </div>
+
+  <div class="signup-content">
+
+    <div class="signup-form">
+      {{!-- START OF FORM --}}
+
+      <form action="/auth/dashboard/dashboardDescription" method="POST" id="form-container">
+        <div>
+
+          <label for="dashboardname">Dashboard Name</label>
+          <br>
+          <input id="dashboardname" class="form-control" type="text" name="dashboardname" placeholder="Ex : Datastories acquisition metrics">
+          <br> <br>
+          <label for="dashboarddescription">Dashboard Description</label>
+          <br>
+          <input id="dashboarddescription" class="form-control" type="dashboarddescription" name="dashboarddescription" placeholder="Ex : Datastories acquisition metrics">
+        </div>
+
+        {{!-- <br>
+        {{#if message }}
+        <div class="error-message">{{ message }}</div>
+        {{/if}} --}}
+
+        <br>
+
+        <button class="btn btn-light btn-primary" aria-pressed="true">Next -></a>
+
+        
+      </form>
+      {{!-- END OF FORM --}}
+    </div>
+
+  </div>
+
+
+</div>
