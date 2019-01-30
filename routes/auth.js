@@ -33,7 +33,27 @@ router.get("/dashboard/ga-metrics", (req, res, next) => {
   });
 });
 
-// redirects the user to the 2nd page of the dashboard creation to select datasources
+// DASHBOARD CREATION - STEP 1 : define the name and the description of the dashboard
+router.get("/dashboard/dashboardDescription", (req, res, next) => {
+  res.render("auth/dashboard/dashboardDescription", { "message": req.flash("error") });
+});
+
+router.post("/dashboard/dashboardDescription", (req, res, next) => {
+  const dashboardname = req.body.dashboardname;
+  const dashboarddescription = req.body.dashboarddescription;
+
+  const newDashboard = new Dashboard({
+    dashboardname,
+    dashboarddescription
+  })
+
+  newDashboard.save()
+  .then(() => {
+    res.redirect("auth/dashboard/dashboardDatasources");
+  })
+})
+
+// DASHBOARD CREATION - STEP 2 : select datasources
 router.get("/dashboard/dashboardDatasources", (req, res, next) => {
   User.findOne({_id: req.user._id}, (err, user) => {
     console.log(user)
@@ -94,25 +114,6 @@ router.get("/profile", (req, res, next) => {
     }
   });
 });
-
-router.get("/dashboard/dashboardDescription", (req, res, next) => {
-  res.render("auth/dashboard/dashboardDescription", { "message": req.flash("error") });
-});
-
-router.post("/dashboard/dashboardDescription", (req, res, next) => {
-  const dashboardname = req.body.dashboardname;
-  const dashboarddescription = req.body.dashboarddescription;
-
-  const newDashboard = new Dashboard({
-    dashboardname,
-    dashboarddescription
-  })
-
-  newDashboard.save()
-  .then(() => {
-    res.redirect("auth/dashboard/dashboardDatasources");
-  })
-})
 
 router.get("/logout", (req, res) => {
   req.logout();
