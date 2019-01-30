@@ -49,7 +49,7 @@ router.post("/dashboard/dashboardDescription", (req, res, next) => {
 
   newDashboard.save()
   .then(() => {
-    res.redirect("auth/dashboard/dashboardDatasources");
+    res.redirect("dashboardDatasources");
   })
 })
 
