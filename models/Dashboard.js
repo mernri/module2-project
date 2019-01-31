@@ -4,7 +4,8 @@ const Schema   = mongoose.Schema;
 const dashboardSchema = new Schema({
   userid: String,
   name: String,
-  description: String
+  description: String,
+  owner: String
 }, {
   timestamps: {
     createdAt: 'created_at',

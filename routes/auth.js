@@ -39,26 +39,17 @@ router.get("/dashboard/dashboardDescription", (req, res, next) => {
 });
 
 router.post("/dashboard/dashboardDescription", (req, res, next) => {
-  const dashboardid = req.user._id;
+
+  const userid = req.user._id;
   const dashboardname = req.body.dashboardname;
   const dashboarddescription = req.body.dashboarddescription;
 
-  User.findOne({_id: req.user._id}, (err, user) => {
-    console.log(user)
-    if (user) {
-      // res.render("auth/dashboard/ga-metrics", { user: user });
-      const newDashboard = new Dashboard({
-        userid : dashboardid,
-        name : dashboardname,
-        description : dashboarddescription
-      })
-    }})
+  const newDashboard = new Dashboard({
+    owner: userid,
+    name: dashboardname,
+    description: dashboarddescription
+  })
 
-  // const newDashboard = new Dashboard({
-  //   userid : req.user._id,
-  //   name : dashboardname,
-  //   description : dashboarddescription
-  // })
 
   newDashboard.save()
   .then(() => {
@@ -72,11 +63,26 @@ router.get("/dashboard/dashboardDatasources", (req, res, next) => {
     console.log(user)
     if (user) {
       res.render("auth/dashboard/dashboardDatasources", { user: user });
+      
     } else {
       console.log("erreur");
     }
   });
 });
+
+// DASHBOARD CREATION - STEP 3 : select metrics
+router.get("/dashboard/dashboardMetrics", (req, res, next) => {
+  User.findOne({_id: req.user._id}, (err, user) => {
+    console.log(user)
+    if (user) {
+      res.render("auth/dashboard/dashboardMetrics", { user: user });
+    } else {
+      console.log("erreur");
+    }
+  });
+});
+
+
 
 
 router.get("/signup", (req, res, next) => {
