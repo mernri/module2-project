@@ -92,8 +92,8 @@ router.post("/dashboard/dashboardDescription", (req, res, next) => {
   const dashboarddescription = req.body.dashboarddescription;
 
   const newDashboard = new Dashboard({
-    dashboardname,
-    dashboarddescription
+    name: dashboardname,
+    description: dashboarddescription
   })
 
   newDashboard.save()
