@@ -39,12 +39,14 @@ router.get("/dashboard/dashboardDescription", (req, res, next) => {
 });
 
 router.post("/dashboard/dashboardDescription", (req, res, next) => {
+  const userid = req.user._id;
   const dashboardname = req.body.dashboardname;
   const dashboarddescription = req.body.dashboarddescription;
 
   const newDashboard = new Dashboard({
-    dashboardname,
-    dashboarddescription
+    owner: userid,
+    name: dashboardname,
+    description: dashboarddescription
   })
 
   newDashboard.save()
@@ -59,11 +61,26 @@ router.get("/dashboard/dashboardDatasources", (req, res, next) => {
     console.log(user)
     if (user) {
       res.render("auth/dashboard/dashboardDatasources", { user: user });
+      
     } else {
       console.log("erreur");
     }
   });
 });
+
+// DASHBOARD CREATION - STEP 3 : select metrics
+router.get("/dashboard/dashboardMetrics", (req, res, next) => {
+  User.findOne({_id: req.user._id}, (err, user) => {
+    console.log(user)
+    if (user) {
+      res.render("auth/dashboard/dashboardMetrics", { user: user });
+    } else {
+      console.log("erreur");
+    }
+  });
+});
+
+
 
 
 router.get("/signup", (req, res, next) => {

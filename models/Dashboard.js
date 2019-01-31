@@ -3,7 +3,8 @@ const Schema   = mongoose.Schema;
 
 const dashboardSchema = new Schema({
   name: String,
-  description: String
+  description: String,
+  owner: String
 }, {
   timestamps: {
     createdAt: 'created_at',
