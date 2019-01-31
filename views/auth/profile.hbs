@@ -1,10 +1,47 @@
 {{#if user}}
 <h1> C'est la page privée de {{ user.username}} </h1>
+
+<a href="/auth/dashboard/ga-metrics">See my dashboard</a>
+
+<div id="embed-api-auth-container"></div>
+
+{{!-- GOOGLE ANALYTICS AUTHENTIFICATION CHECK --}}
+<script>
+   (function (w, d, s, g, js, fs) {
+      g = w.gapi || (w.gapi = {});
+      g.analytics = {
+         q: [],
+         ready: function (f) {
+            this.q.push(f);
+         }
+      };
+      js = d.createElement(s);
+      fs = d.getElementsByTagName(s)[0];
+      js.src = "https://apis.google.com/js/platform.js";
+      fs.parentNode.insertBefore(js, fs);
+      js.onload = function () {
+         g.load("analytics");
+      };
+   })(window, document, "script");
+</script>
+
+<script>
+   gapi.analytics.ready(function () {
+      /**
+       * Authorize the user immediately if the user has already granted access.
+       * If no access has been created, render an authorize button inside the
+       * element with the ID "embed-api-auth-container".
+       */
+      gapi.analytics.auth.authorize({
+         container: "embed-api-auth-container",
+         clientid:
+            "315451096739-f5q6rp31jm5db9f4ec5fflq7g793db0m.apps.googleusercontent.com"
+      });
+   });
+</script>
+{{!-- END OF GOOGLE ANALYTICS AUTHENTIFICATION CHECK --}}
+
+
 {{else}}
 <h1> Déso, tu n'as pas accès à cette page </h1>
 {{/if}}
-
-<a href="/auth/dashboard/dashboardDescription">Dashboard Creation</a> 
-
-
-

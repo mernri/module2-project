@@ -33,6 +33,38 @@ router.get("/dashboard/ga-metrics", (req, res, next) => {
   });
 });
 
+// DASHBOARD CREATION - STEP 1 : define the name and the description of the dashboard
+router.get("/dashboard/dashboardDescription", (req, res, next) => {
+  res.render("auth/dashboard/dashboardDescription", { "message": req.flash("error") });
+});
+
+router.post("/dashboard/dashboardDescription", (req, res, next) => {
+  const dashboardname = req.body.dashboardname;
+  const dashboarddescription = req.body.dashboarddescription;
+
+  const newDashboard = new Dashboard({
+    dashboardname,
+    dashboarddescription
+  })
+
+  newDashboard.save()
+  .then(() => {
+    res.redirect("dashboardDatasources");
+  })
+})
+
+// DASHBOARD CREATION - STEP 2 : select datasources
+router.get("/dashboard/dashboardDatasources", (req, res, next) => {
+  User.findOne({_id: req.user._id}, (err, user) => {
+    console.log(user)
+    if (user) {
+      res.render("auth/dashboard/dashboardDatasources", { user: user });
+    } else {
+      console.log("erreur");
+    }
+  });
+});
+
 
 router.get("/signup", (req, res, next) => {
   res.render("auth/signup");
@@ -83,6 +115,7 @@ router.get("/profile", (req, res, next) => {
   });
 });
 
+
 router.get("/dashboard/dashboardDescription", (req, res, next) => {
   res.render("auth/dashboard/dashboardDescription", { "message": req.flash("error") });
 });
@@ -101,6 +134,7 @@ router.post("/dashboard/dashboardDescription", (req, res, next) => {
     res.redirect("auth/dashboard/dashboardDatasources");
   })
 })
+
 
 router.get("/logout", (req, res) => {
   req.logout();
