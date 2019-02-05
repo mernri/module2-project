@@ -118,4 +118,14 @@ footer a {
   margin-top: 10%;
   margin-left: 20%; }
 
+ul {
+  list-style: none; }
+
+ul.twoxtwo li {
+  display: inline-block;
+  width: 45%; }
+
+.d-none {
+  display: none; }
+
 /*# sourceMappingURL=style.css.map */

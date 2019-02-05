@@ -2,14 +2,24 @@
 
 <div id="embed-api-auth-container" style="display: none"></div>
 
-<div id="view-selector-1-container"></div>
-<div id="chart-1-container"></div>
-
-<div id="view-selector-2-container"></div>
-<div id="chart-2-container"></div>
-
-<div id="view-selector-3-container"></div>
-<div id="chart-3-container"></div>
+</div>
+<ul class="twoxtwo">
+  <li>
+    <div id="view-selector-1-container" class="d-none"></div>
+    <div id="chart-1-container"></div>
+  </li>
+  <li>
+    <div id="view-selector-2-container" class="d-none"></div>
+    <div id="chart-2-container"></div>
+  </li>
+  <li>
+    <div id="view-selector-3-container" class="d-none"></div>
+    <div id="chart-3-container"></div>
+  </li>
+  <li>
+    <div id="container4"></div>
+  </li>
+</ul>
 
 <script>
   (function (w, d, s, g, js, fs) {
@@ -69,8 +79,8 @@
 
     // Render both view selectors to the page.
     viewSelector1.execute();
-    viewSelector2.execute();
-    viewSelector3.execute();
+    //viewSelector2.execute();
+    //viewSelector3.execute();
 
     /**
      * Create the first DataChart for top countries over the past 7 days.
@@ -156,5 +166,8 @@
       dataChart3.set({ query: { ids: ids } }).execute();
     });
   });
+
+
+
 </script>
 </body>
