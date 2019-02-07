@@ -27,8 +27,8 @@ let metrics = [
     APIname: "google"
   },
   {    
-    name: "ga:daysSinceLastSession",
-    UIname: "Days since last session",
+    name: "ga:sessionDuration",
+    UIname: "Session Duration",
     APIname: "google"
   }
 ]
