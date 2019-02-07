@@ -4,10 +4,7 @@
 // $ node bin/seeds.js
 
 const mongoose = require("mongoose");
-const bcrypt = require("bcrypt");
-const User = require("../models/User");
-
-const bcryptSalt = 10;
+const Metric = require("../models/Metric");
 
 mongoose
   .connect('mongodb://localhost/module2-project', {useNewUrlParser: true})
@@ -18,24 +15,31 @@ mongoose
     console.error('Error connecting to mongo', err)
   });
 
-let users = [
+let metrics = [
   {
-    username: "alice",
-    password: bcrypt.hashSync("alice", bcrypt.genSaltSync(bcryptSalt)),
+    name: "ga:users",
+    UIname: "Number of users",
+    APIname: "google"
   },
   {
-    username: "bob",
-    password: bcrypt.hashSync("bob", bcrypt.genSaltSync(bcryptSalt)),
+    name: "ga:sessions",
+    UIname: "Number of sessions",
+    APIname: "google"
+  },
+  {    
+    name: "ga:daysSinceLastSession",
+    UIname: "Days since last session",
+    APIname: "google"
   }
 ]
 
-User.deleteMany()
+Metric.deleteMany()
 .then(() => {
-  return User.create(users)
+  return Metric.create(metrics)
 })
-.then(usersCreated => {
-  console.log(`${usersCreated.length} users created with the following id:`);
-  console.log(usersCreated.map(u => u._id));
+.then(metricsCreated => {
+  console.log(`${metricsCreated.length} users created with the following id:`);
+  console.log(metricsCreated.map(u => u._id));
 })
 .then(() => {
   // Close properly the connection to Mongoose

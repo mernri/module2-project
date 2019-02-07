@@ -11,9 +11,9 @@
     <div class="select-datasources-form">
       {{!-- START OF FORM --}}
 
-      <form action="#" method="POST" id="form-container">
+      <form action="/auth/dashboard/dashboardDatasources" method="POST" id="form-container">
         <div>
-
+          <input type="hidden" value={{dashboard}} name="dashboardid"> 
           <div class="datasources-connect">
 
             {{!-- Google connect --}}
@@ -43,16 +43,23 @@
               </script>
 
               <script>
+                
                 gapi.analytics.ready(function () {
                   /**
                    * Authorize the user immediately if the user has already granted access.
                    * If no access has been created, render an authorize button inside the
                    * element with the ID "embed-api-auth-container".
                    */
+
+                  gapi.analytics.auth.on('success', function (response) {
+                    console.log('success auth analytics', response)
+                    //viewSelector.execute();
+                  });
+
                   gapi.analytics.auth.authorize({
                     container: "embed-api-auth-container",
-                    clientid:
-                      "315451096739-f5q6rp31jm5db9f4ec5fflq7g793db0m.apps.googleusercontent.com"
+                     clientid:
+                      "315451096739-f5q6rp31jm5db9f4ec5fflq7g793db0m.apps.googleusercontent.com" 
                   });
                 });
               </script>

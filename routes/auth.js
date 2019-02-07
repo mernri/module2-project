@@ -1,30 +1,33 @@
 const express = require("express");
-const passport = require('passport');
+const passport = require("passport");
 const router = express.Router();
 const User = require("../models/User");
 const Dashboard = require("../models/Dashboard");
+const Metric = require("../models/Metric");
 
 // Bcrypt to encrypt passwords
 const bcrypt = require("bcrypt");
 const bcryptSalt = 10;
 
-
 router.get("/login", (req, res, next) => {
-  res.render("auth/login", { "message": req.flash("error") });
+  res.render("auth/login", { message: req.flash("error") });
 });
 
 // If login is ok, the user is redirected to his profile
-router.post("/login", passport.authenticate("local", {
-  successRedirect: "/auth/profile",
-  failureRedirect: "/auth/login",
-  failureFlash: true,
-  passReqToCallback: true
-}));
+router.post(
+  "/login",
+  passport.authenticate("local", {
+    successRedirect: "/auth/profile",
+    failureRedirect: "/auth/login",
+    failureFlash: true,
+    passReqToCallback: true
+  })
+);
 
 // redirects the user to his dashboard
 router.get("/dashboard/ga-metrics", (req, res, next) => {
-  User.findOne({_id: req.user._id}, (err, user) => {
-    console.log(user)
+  User.findOne({ _id: req.user._id }, (err, user) => {
+    console.log(user);
     if (user) {
       res.render("auth/dashboard/ga-metrics", { user: user });
     } else {
@@ -35,7 +38,9 @@ router.get("/dashboard/ga-metrics", (req, res, next) => {
 
 // DASHBOARD CREATION - STEP 1 : define the name and the description of the dashboard
 router.get("/dashboard/dashboardDescription", (req, res, next) => {
-  res.render("auth/dashboard/dashboardDescription", { "message": req.flash("error") });
+  res.render("auth/dashboard/dashboardDescription", {
+    message: req.flash("error")
+  });
 });
 
 router.post("/dashboard/dashboardDescription", (req, res, next) => {
@@ -47,21 +52,36 @@ router.post("/dashboard/dashboardDescription", (req, res, next) => {
     owner: userid,
     name: dashboardname,
     description: dashboarddescription
-  })
+  });
 
-  newDashboard.save()
-  .then(() => {
-    res.redirect("dashboardDatasources");
-  })
-})
+  newDashboard.save().then(dashboard => {
+    res.redirect("dashboardDatasources/" + dashboard._id);
+  });
+});
 
 // DASHBOARD CREATION - STEP 2 : select datasources
-router.get("/dashboard/dashboardDatasources", (req, res, next) => {
-  User.findOne({_id: req.user._id}, (err, user) => {
-    console.log(user)
+
+router.get("/dashboard/dashboardDatasources/:id", (req, res, next) => {
+  User.findOne({ _id: req.user._id }, (err, user) => {
+    // console.log(user)
     if (user) {
-      res.render("auth/dashboard/dashboardDatasources", { user: user });
-      
+      res.render("auth/dashboard/dashboardDatasources", {
+        user: user,
+        dashboard: req.params.id
+      });
+    } else {
+      console.log("erreur");
+    }
+  });
+});
+
+router.post("/dashboard/dashboardDatasources", (req, res, next) => {
+  // console.log(req.body);
+
+  Dashboard.findOne({ _id: req.body.dashboardid }, (err, dashboard) => {
+    console.log(dashboard);
+    if (dashboard) {
+      res.render("auth/dashboard/dashboardMetrics", { dashboard: dashboard });
     } else {
       console.log("erreur");
     }
@@ -69,24 +89,42 @@ router.get("/dashboard/dashboardDatasources", (req, res, next) => {
 });
 
 // DASHBOARD CREATION - STEP 3 : select metrics
-router.get("/dashboard/dashboardMetrics", (req, res, next) => {
-  User.findOne({_id: req.user._id}, (err, user) => {
-    console.log(user)
+router.get("/dashboard/dashboardMetrics/:id", (req, res, next) => {
+  User.findOne({ _id: req.user._id }, (err, user) => {
+    console.log(user);
     if (user) {
-      res.render("auth/dashboard/dashboardMetrics", { user: user });
+      res.render("auth/dashboard/dashboardMetrics", {
+        user: user,
+        dashboard: req.params.id
+      });
     } else {
       console.log("erreur");
     }
   });
 });
 
+// _________ PAS BON : ne remplit pas le tableau de metrics du dashboard en question _________
+router.post("/dashboard/dashboardMetrics", (req, res, next) => {
+  console.log(req.body);
 
-
+  Dashboard.findOne({ _id: req.body.dashboardid }, (err, dashboard) => {
+    console.log(dashboard);
+    if (dashboard) {
+      req.body.metrics.forEach(metricname => {
+        Metric.findOne({ name: metricname }).then((err, metric) => {
+          dashboard.update({ _id: dashboard.id }, { $push: { metrics: metric } });
+        });
+      });
+      res.render("auth/dashboard/dashboardMetrics", { dashboard: dashboard });
+    } else {
+      console.log("erreur");
+    }
+  });
+});
 
 router.get("/signup", (req, res, next) => {
   res.render("auth/signup");
 });
-
 
 router.post("/signup", (req, res, next) => {
   const username = req.body.username;
@@ -110,20 +148,21 @@ router.post("/signup", (req, res, next) => {
       password: hashPass
     });
 
-    newUser.save()
-    .then(() => {
-      res.redirect("/");
-    })
-    .catch(err => {
-      res.render("auth/signup", { message: "Something went wrong" });
-    })
+    newUser
+      .save()
+      .then(() => {
+        res.redirect("/");
+      })
+      .catch(err => {
+        res.render("auth/signup", { message: "Something went wrong" });
+      });
   });
 });
 
 // Voir la page de profil
 router.get("/profile", (req, res, next) => {
-  User.findOne({_id: req.user._id}, (err, user) => {
-    console.log(user)
+  User.findOne({ _id: req.user._id }, (err, user) => {
+    console.log(user);
     if (user) {
       res.render("auth/profile", { user: user });
     } else {

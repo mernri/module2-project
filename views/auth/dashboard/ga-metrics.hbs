@@ -1,3 +1,5 @@
+{{!-- https://developers.google.com/analytics/devguides/reporting/embed/v1/getting-started#step-3 --}}
+
 <link rel="stylesheet" href="/stylesheets/dashboard-style.css">
 
 <div id="embed-api-auth-container" style="display: none"></div>
@@ -42,7 +44,6 @@
       clientid:
         "315451096739-f5q6rp31jm5db9f4ec5fflq7g793db0m.apps.googleusercontent.com"
     });
-
     /**
      * Create a ViewSelector for the first view to be rendered inside of an
      * element with the id "view-selector-1-container".
@@ -50,7 +51,6 @@
     var viewSelector1 = new gapi.analytics.ViewSelector({
       container: "view-selector-1-container"
     });
-
     /**
      * Create a ViewSelector for the second view to be rendered inside of an
      * element with the id "view-selector-2-container".
@@ -58,7 +58,6 @@
     var viewSelector2 = new gapi.analytics.ViewSelector({
       container: "view-selector-2-container"
     });
-
     /**
      * Create a ViewSelector for the thirs view to be rendered inside of an
      * element with the id "view-selector-3-container".
@@ -66,12 +65,10 @@
     var viewSelector3 = new gapi.analytics.ViewSelector({
       container: "view-selector-3-container"
     });
-
     // Render both view selectors to the page.
     viewSelector1.execute();
     viewSelector2.execute();
     viewSelector3.execute();
-
     /**
      * Create the first DataChart for top countries over the past 7 days.
      * It will be rendered inside an element with the id "chart-1-container".
@@ -91,7 +88,6 @@
         }
       }
     });
-
     /**
      * Create the second DataChart for top countries over the past 7 days.
      * It will be rendered inside an element with the id "chart-2-container".
@@ -114,7 +110,6 @@
         }
       }
     });
-
     /**
      * Create the third DataChart for top countries over the past 7 days.
      * It will be rendered inside an element with the id "chart-3-container".
@@ -134,21 +129,18 @@
         }
       }
     });
-
     /**
      * Update the first dataChart when the first view selecter is changed.
      */
     viewSelector1.on("change", function (ids) {
       dataChart1.set({ query: { ids: ids } }).execute();
     });
-
     /**
      * Update the second dataChart when the second view selecter is changed.
      */
     viewSelector2.on("change", function (ids) {
       dataChart2.set({ query: { ids: ids } }).execute();
     });
-
     /**
      * Update the thirs dataChart when the second view selecter is changed.
      */
