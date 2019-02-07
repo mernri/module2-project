@@ -44,7 +44,6 @@ router.get("/dashboard/dashboardDescription", (req, res, next) => {
 });
 
 router.post("/dashboard/dashboardDescription", (req, res, next) => {
-
   const userid = req.user._id;
   const dashboardname = req.body.dashboardname;
   const dashboarddescription = req.body.dashboarddescription;
@@ -59,7 +58,6 @@ router.post("/dashboard/dashboardDescription", (req, res, next) => {
     res.redirect("dashboardDatasources/" + dashboard._id);
   });
 });
-
 
 // DASHBOARD CREATION - STEP 2 : select datasources
 
@@ -81,7 +79,7 @@ router.post("/dashboard/dashboardDatasources", (req, res, next) => {
   // console.log(req.body);
 
   Dashboard.findOne({ _id: req.body.dashboardid }, (err, dashboard) => {
-    console.log(dashboard);
+    // console.log(dashboard);
     if (dashboard) {
       res.render("auth/dashboard/dashboardMetrics", { dashboard: dashboard });
     } else {
@@ -93,7 +91,7 @@ router.post("/dashboard/dashboardDatasources", (req, res, next) => {
 // DASHBOARD CREATION - STEP 3 : select metrics
 router.get("/dashboard/dashboardMetrics/:id", (req, res, next) => {
   User.findOne({ _id: req.user._id }, (err, user) => {
-    console.log(user);
+    // console.log(user);
     if (user) {
       res.render("auth/dashboard/dashboardMetrics", {
         user: user,
@@ -107,17 +105,24 @@ router.get("/dashboard/dashboardMetrics/:id", (req, res, next) => {
 
 // _________ PAS BON : ne remplit pas le tableau de metrics du dashboard en question _________
 router.post("/dashboard/dashboardMetrics", (req, res, next) => {
-  console.log(req.body);
+  // console.log(req.body);
 
   Dashboard.findOne({ _id: req.body.dashboardid }, (err, dashboard) => {
-    console.log(dashboard);
+    // console.log(dashboard);
     if (dashboard) {
+      console.log("req body metrics = " + req.body.metrics[0]);
       req.body.metrics.forEach(metricname => {
-        Metric.findOne({ name: metricname }).then((err, metric) => {
-          dashboard.update({ _id: dashboard.id }, { $push: { metrics: metric } });
-        });
+        Metric.findOne({ name: metricname })
+          .then(metric => {
+            // console.log("the metric is:" + metricname)
+            Dashboard.findByIdAndUpdate(dashboard.id, {
+              $push: { metrics: metric._id }
+            }).then(dashboard =>
+              res.render("auth/dashboard/ga-metrics", { dashboard: dashboard })
+            );
+          })
+          .catch(err => console.log(err));
       });
-      res.render("auth/dashboard/dashboardMetrics", { dashboard: dashboard });
     } else {
       console.log("erreur");
     }
