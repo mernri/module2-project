@@ -7,7 +7,7 @@
 
 </div>
 <ul class="twoxtwo">
-  <li id="container1"> 
+  <li id="container1">
     <div id="view-selector-1-container" class="d-none"></div>
     <div id="chart-1-container"></div>
   </li>
@@ -81,14 +81,21 @@
     // Render both view selectors to the page.
     if ('{dashboard.metrics}'.includes("ga:sessions")) {
       viewSelector1.execute();
-      var graphique = document.getElementById("container1")
-      graphique.style.display = "none";
+      var graphique1 = document.getElementById("container1")
+      graphique1.style.display = "none";
+    }
+
+    // Render both view selectors to the page.
+    if ('{dashboard.metrics}'.includes("ga:users")) {
+      viewSelector2.execute();
+      var graphique2 = document.getElementById("container2")
+      graphique2.style.display = "none";
     }
 
 
 
-      //{if dashboard.metrics contient dataChart2.query.metrics alors executer}
-      viewSelector2.execute();
+
+    //{if dashboard.metrics contient dataChart2.query.metrics alors executer}
     //{if dashboard.metrics contient dataChart3.query.metrics alors executer}
     viewSelector3.execute();
 
