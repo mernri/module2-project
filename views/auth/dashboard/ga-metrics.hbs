@@ -1,4 +1,5 @@
 {{!-- https://developers.google.com/analytics/devguides/reporting/embed/v1/getting-started#step-3 --}}
+{{#if dashboard}}
 
 <link rel="stylesheet" href="/stylesheets/dashboard-style.css">
 
@@ -43,6 +44,7 @@
 </script>
 
 <script>
+  console.log('{{dashboard.name}}')
   gapi.analytics.ready(function () {
     /**
      * Authorize the user immediately if the user has already granted access.
@@ -75,9 +77,12 @@
     var viewSelector3 = new gapi.analytics.ViewSelector({
       container: "view-selector-3-container"
     });
+
     // Render both view selectors to the page.
     viewSelector1.execute();
+    //{if dashboard.metrics contient dataChart2.query.metrics alors executer}
     viewSelector2.execute();
+    //{if dashboard.metrics contient dataChart3.query.metrics alors executer}
     viewSelector3.execute();
 
     /**
@@ -163,4 +168,9 @@
 
 
 </script>
+
+{{else}}
+<h1> Déso, tu n'as pas accès à cette page </h1>
+{{/if}}
+
 </body>
