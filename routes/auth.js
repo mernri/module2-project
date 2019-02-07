@@ -44,6 +44,7 @@ router.get("/dashboard/dashboardDescription", (req, res, next) => {
 });
 
 router.post("/dashboard/dashboardDescription", (req, res, next) => {
+
   const userid = req.user._id;
   const dashboardname = req.body.dashboardname;
   const dashboarddescription = req.body.dashboarddescription;
@@ -58,6 +59,7 @@ router.post("/dashboard/dashboardDescription", (req, res, next) => {
     res.redirect("dashboardDatasources/" + dashboard._id);
   });
 });
+
 
 // DASHBOARD CREATION - STEP 2 : select datasources
 
