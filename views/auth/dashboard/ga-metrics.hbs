@@ -79,18 +79,11 @@
     });
 
     // Render both view selectors to the page.
-<<<<<<< HEAD
-    
-    
-    viewSelector1.execute();
-    viewSelector2.execute();
-    viewSelector3.execute();
-=======
+
     var metrics = [];
     {{#each dashboard.metrics}}
     metrics.push('{{name}}')
     {{/each}}
->>>>>>> 426789884cfacfb630fc6dd794787e54e48d83de
 
         if (metrics
           .includes("ga:sessions")) {
