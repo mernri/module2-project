@@ -120,70 +120,22 @@ router.post("/dashboard/dashboardMetrics", (req, res, next) => {
 
       req.body.metrics.forEach(metric => {
         promises.push(Metric.findOne({ name: metric }));
-
-        // .then(() => {
-        //   Dashboard.findByIdAndUpdate(
-        //     //       dashboard.id,
-        //     //       {
-        //     //         $push: { metrics: metricname._id }
-        //     //       },
-        //     //       { new: true }
-        //     //     )
-        //     //     console.log(metrics)
-        // })
-
-        // req.body.metrics.forEach(metric => {
-        //     // promise 1
-        //   Metric.findOne({name: metric}, (err, metric) => {
-        //     console.log("metric_id = " + metric.id)
-        //     metrics_id.push(metric.id)
-        //     // promise 2
-        //     console.log(metrics_id)
-
-        //   });
-        // })
-
-        // Dashboard.findByIdAndUpdate(
-        //       dashboard.id,
-        //       {
-        //         $push: { metrics: metricname._id }
-        //       },
-        //       { new: true }
-        //     )
-        //     console.log(metrics)
-
-        // .then(metric => {
-        //   // console.log("the metric is:" + metricname)
-        //   Dashboard.findByIdAndUpdate(
-        //     dashboard.id,
-        //     {
-        //       $push: { metrics: metric._id }
-        //     },
-        //     { new: true }
-        //   )
-        //     .populate("metrics")
-        //     .then(dashboard => {
-        //       if (
-        //         metricname === req.body.metrics[req.body.metrics.length - 1]
-        //       ) {
-        //         console.log(dashboard);
-        //         res.render("auth/dashboard/ga-metrics", {
-        //           dashboard: dashboard
-        //         });
-        //       }
-        //     });
-        // })
-        // .catch(err => console.log(err));
       });
       Promise.all(promises).then(results => {
         const metricids = results.map(metric => metric._id);
         console.log(metricids);
 
-        dashboard.metrics = metricids;
-        dashboard
-          .save()
-          .then((dashboard) => {
-            res.render("auth/dashboard/ga-metrics", {dashboard: dashboard})
+        Dashboard.findByIdAndUpdate(
+          dashboard._id,
+          {
+            $push: { metrics: metricids }
+          },
+          { new: true }
+        )
+          .populate("metrics")
+          .then(dashboard => {
+            console.log(dashboard);
+            res.render("auth/dashboard/ga-metrics", { dashboard: dashboard });
           })
           .catch(err => {
             console.log(err);
