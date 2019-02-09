@@ -6,7 +6,7 @@ const dashboardSchema = new Schema({
   name: String,
   description: String,
   owner: String,
-  metrics: Array,
+  metrics: [{ type : mongoose.Schema.ObjectId, ref: 'Metric' }],
 }, {
   timestamps: {
     createdAt: 'created_at',

@@ -13,12 +13,15 @@
 
       <form action="/auth/dashboard/dashboardDatasources" method="POST" id="form-container">
         <div>
-          <input type="hidden" value={{dashboard}} name="dashboardid"> 
+          <input type="hidden" value={{dashboard}} name="dashboardid">
+          <input type="hidden" value={{user}} name="user">
+
           <div class="datasources-connect">
 
             {{!-- Google connect --}}
             <div class="datasource">
-              <img src="https://developers.google.com/analytics/images/terms/logo_lockup_analytics_icon_vertical_black_2x.png"
+              <img
+                src="https://developers.google.com/analytics/images/terms/logo_lockup_analytics_icon_vertical_black_2x.png"
                 class="ga-logo">
               <div id="embed-api-auth-container"></div>
 
@@ -43,7 +46,7 @@
               </script>
 
               <script>
-                
+
                 gapi.analytics.ready(function () {
                   /**
                    * Authorize the user immediately if the user has already granted access.
@@ -58,8 +61,8 @@
 
                   gapi.analytics.auth.authorize({
                     container: "embed-api-auth-container",
-                     clientid:
-                      "315451096739-f5q6rp31jm5db9f4ec5fflq7g793db0m.apps.googleusercontent.com" 
+                    clientid:
+                      "315451096739-f5q6rp31jm5db9f4ec5fflq7g793db0m.apps.googleusercontent.com"
                   });
                 });
               </script>
@@ -69,7 +72,7 @@
             {{!-- Mailchimp connect --}}
             <div class="datasource">
               <img src="http://www.stickpng.com/assets/images/58417f77a6515b1e0ad75a2c.png" class="mc-logo">
-            
+
             </div>
 
           </div>

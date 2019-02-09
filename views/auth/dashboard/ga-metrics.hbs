@@ -1,4 +1,5 @@
 {{!-- https://developers.google.com/analytics/devguides/reporting/embed/v1/getting-started#step-3 --}}
+{{#if dashboard}}
 
 <link rel="stylesheet" href="/stylesheets/dashboard-style.css">
 
@@ -6,15 +7,15 @@
 
 </div>
 <ul class="twoxtwo">
-  <li>
+  <li id="container1">
     <div id="view-selector-1-container" class="d-none"></div>
     <div id="chart-1-container"></div>
   </li>
-  <li>
+  <li id="container2">
     <div id="view-selector-2-container" class="d-none"></div>
     <div id="chart-2-container"></div>
   </li>
-  <li>
+  <li id="container3">
     <div id="view-selector-3-container" class="d-none"></div>
     <div id="chart-3-container"></div>
   </li>
@@ -43,6 +44,7 @@
 </script>
 
 <script>
+  //console.log('{{dashboard.name}}')
   gapi.analytics.ready(function () {
     /**
      * Authorize the user immediately if the user has already granted access.
@@ -75,94 +77,128 @@
     var viewSelector3 = new gapi.analytics.ViewSelector({
       container: "view-selector-3-container"
     });
+
     // Render both view selectors to the page.
+<<<<<<< HEAD
     
     
     viewSelector1.execute();
     viewSelector2.execute();
     viewSelector3.execute();
+=======
+    var metrics = [];
+    {{#each dashboard.metrics}}
+    metrics.push('{{name}}')
+    {{/each}}
+>>>>>>> 426789884cfacfb630fc6dd794787e54e48d83de
 
-    /**
-     * Create the first DataChart for top countries over the past 7 days.
-     * It will be rendered inside an element with the id "chart-1-container".
-     */
-    var dataChart1 = new gapi.analytics.googleCharts.DataChart({
-      query: {
-        metrics: "ga:sessions",
-        dimensions: "ga:date",
-        "start-date": "7daysAgo",
-        "end-date": "yesterday"
-      },
-      chart: {
-        container: "chart-1-container",
-        type: "LINE",
-        options: {
-          width: "100%"
+        if (metrics
+          .includes("ga:sessions")) {
+          viewSelector1.execute();
         }
-      }
-    });
-    /**
-     * Create the second DataChart for top countries over the past 7 days.
-     * It will be rendered inside an element with the id "chart-2-container".
-     */
-    var dataChart2 = new gapi.analytics.googleCharts.DataChart({
-      query: {
-        metrics: "ga:sessions",
-        dimensions: "ga:country",
-        "start-date": "7daysAgo",
-        "end-date": "yesterday",
-        "max-results": 6,
-        sort: "-ga:sessions"
-      },
-      chart: {
-        container: "chart-2-container",
-        type: "PIE",
-        options: {
-          width: "100%",
-          pieHole: 4 / 9
+
+
+        if (metrics
+          .includes("ga:users")) {
+          viewSelector2.execute();
         }
-      }
-    });
-    /**
-     * Create the third DataChart for top countries over the past 7 days.
-     * It will be rendered inside an element with the id "chart-3-container".
-     */
-    var dataChart3 = new gapi.analytics.googleCharts.DataChart({
-      query: {
-        metrics: "ga:users",
-        dimensions: "ga:date",
-        "start-date": "7daysAgo",
-        "end-date": "yesterday"
-      },
-      chart: {
-        container: "chart-3-container",
-        type: "LINE",
-        options: {
-          width: "100%"
+
+        if (metrics
+          .includes("ga:sessionDuration")) {
+          viewSelector3.execute();
         }
-      }
-    });
-    /**
-     * Update the first dataChart when the first view selecter is changed.
-     */
-    viewSelector1.on("change", function (ids) {
-      dataChart1.set({ query: { ids: ids } }).execute();
-    });
-    /**
-     * Update the second dataChart when the second view selecter is changed.
-     */
-    viewSelector2.on("change", function (ids) {
-      dataChart2.set({ query: { ids: ids } }).execute();
-    });
-    /**
-     * Update the thirs dataChart when the second view selecter is changed.
-     */
-    viewSelector3.on("change", function (ids) {
-      dataChart3.set({ query: { ids: ids } }).execute();
-    });
-  });
+
+
+
+
+        //{if dashboard.metrics contient dataChart2.query.metrics alors executer}
+        //{if dashboard.metrics contient dataChart3.query.metrics alors executer}
+
+        /**
+         * Create the first DataChart for top countries over the past 7 days.
+         * It will be rendered inside an element with the id "chart-1-container".
+         */
+        var dataChart1 = new gapi.analytics.googleCharts.DataChart({
+          query: {
+            metrics: "ga:sessions",
+            dimensions: "ga:date",
+            "start-date": "7daysAgo",
+            "end-date": "yesterday"
+          },
+          chart: {
+            container: "chart-1-container",
+            type: "LINE",
+            options: {
+              width: "100%"
+            }
+          }
+        });
+
+        /**
+         * Create the second DataChart for top countries over the past 7 days.
+         * It will be rendered inside an element with the id "chart-2-container".
+         */
+        var dataChart2 = new gapi.analytics.googleCharts.DataChart({
+          query: {
+            metrics: "ga:users",
+            dimensions: "ga:date",
+            "start-date": "7daysAgo",
+            "end-date": "yesterday"
+          },
+          chart: {
+            container: "chart-2-container",
+            type: "LINE",
+            options: {
+              width: "100%"
+            }
+          }
+        });
+        /**
+         * Create the third DataChart for top countries over the past 7 days.
+         * It will be rendered inside an element with the id "chart-3-container".
+         */
+        var dataChart3 = new gapi.analytics.googleCharts.DataChart({
+          query: {
+            metrics: "ga:sessionDuration",
+            dimensions: "ga:date",
+            "start-date": "7daysAgo",
+            "end-date": "yesterday"
+          },
+          chart: {
+            container: "chart-3-container",
+            type: "LINE",
+            options: {
+              width: "100%"
+            }
+          }
+        });
+        /**
+         * Update the first dataChart when the first view selecter is changed.
+         */
+        viewSelector1.on("change", function (ids) {
+          dataChart1.set({ query: { ids: ids } }).execute();
+        });
+        /**
+         * Update the second dataChart when the second view selecter is changed.
+         */
+        viewSelector2.on("change", function (ids) {
+          dataChart2.set({ query: { ids: ids } }).execute();
+        });
+        /**
+         * Update the thirs dataChart when the second view selecter is changed.
+         */
+        viewSelector3.on("change", function (ids) {
+          dataChart3.set({ query: { ids: ids } }).execute();
+        });
+      });
+
 
 
 
 </script>
+
+{{else}}
+<h1> Déso, tu n'as pas accès à cette page </h1>
+{{/if}}
+
 </body>
