@@ -113,15 +113,28 @@ router.post("/dashboard/dashboardMetrics", (req, res, next) => {
       console.log("req body metrics = " + req.body.metrics[0]);
       req.body.metrics.forEach(metricname => {
         Metric.findOne({ name: metricname })
-          .then(metric => {
-            // console.log("the metric is:" + metricname)
-            Dashboard.findByIdAndUpdate(dashboard.id, {
-              $push: { metrics: metric._id }
-            }).then(dashboard =>
-              res.render("auth/dashboard/ga-metrics", { dashboard: dashboard })
-            );
-          })
-          .catch(err => console.log(err));
+          // .then(metric => {
+          //   // console.log("the metric is:" + metricname)
+          //   Dashboard.findByIdAndUpdate(
+          //     dashboard.id,
+          //     {
+          //       $push: { metrics: metric._id }
+          //     },
+          //     { new: true }
+          //   )
+          //     .populate("metrics")
+          //     .then(dashboard => {
+          //       if (
+          //         metricname === req.body.metrics[req.body.metrics.length - 1]
+          //       ) {
+          //         console.log(dashboard);
+          //         res.render("auth/dashboard/ga-metrics", {
+          //           dashboard: dashboard
+          //         });
+          //       }
+          //     });
+          // })
+          // .catch(err => console.log(err));
       });
     } else {
       console.log("erreur");
