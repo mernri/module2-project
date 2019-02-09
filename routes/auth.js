@@ -27,7 +27,7 @@ router.post(
 // redirects the user to his dashboard
 router.get("/dashboard/ga-metrics", (req, res, next) => {
   User.findOne({ _id: req.user._id }, (err, user) => {
-    console.log(user);
+    // console.log(user);
     if (user) {
       res.render("auth/dashboard/ga-metrics", { user: user });
     } else {
@@ -110,31 +110,84 @@ router.post("/dashboard/dashboardMetrics", (req, res, next) => {
   Dashboard.findOne({ _id: req.body.dashboardid }, (err, dashboard) => {
     // console.log(dashboard);
     if (dashboard) {
-      console.log("req body metrics = " + req.body.metrics[0]);
-      req.body.metrics.forEach(metricname => {
-        Metric.findOne({ name: metricname })
-          // .then(metric => {
-          //   // console.log("the metric is:" + metricname)
-          //   Dashboard.findByIdAndUpdate(
-          //     dashboard.id,
-          //     {
-          //       $push: { metrics: metric._id }
-          //     },
-          //     { new: true }
-          //   )
-          //     .populate("metrics")
-          //     .then(dashboard => {
-          //       if (
-          //         metricname === req.body.metrics[req.body.metrics.length - 1]
-          //       ) {
-          //         console.log(dashboard);
-          //         res.render("auth/dashboard/ga-metrics", {
-          //           dashboard: dashboard
-          //         });
-          //       }
-          //     });
-          // })
-          // .catch(err => console.log(err));
+      // Tableau des noms des metrics
+      // req.body.metrics.forEach(metricname => {
+      //   Metric.findOne({ name: metricname });
+
+      // Tableau des id des metrics
+      var metrics_id = [];
+      var promises = [];
+
+      req.body.metrics.forEach(metric => {
+        promises.push(Metric.findOne({ name: metric }));
+
+        // .then(() => {
+        //   Dashboard.findByIdAndUpdate(
+        //     //       dashboard.id,
+        //     //       {
+        //     //         $push: { metrics: metricname._id }
+        //     //       },
+        //     //       { new: true }
+        //     //     )
+        //     //     console.log(metrics)
+        // })
+
+        // req.body.metrics.forEach(metric => {
+        //     // promise 1
+        //   Metric.findOne({name: metric}, (err, metric) => {
+        //     console.log("metric_id = " + metric.id)
+        //     metrics_id.push(metric.id)
+        //     // promise 2
+        //     console.log(metrics_id)
+
+        //   });
+        // })
+
+        // Dashboard.findByIdAndUpdate(
+        //       dashboard.id,
+        //       {
+        //         $push: { metrics: metricname._id }
+        //       },
+        //       { new: true }
+        //     )
+        //     console.log(metrics)
+
+        // .then(metric => {
+        //   // console.log("the metric is:" + metricname)
+        //   Dashboard.findByIdAndUpdate(
+        //     dashboard.id,
+        //     {
+        //       $push: { metrics: metric._id }
+        //     },
+        //     { new: true }
+        //   )
+        //     .populate("metrics")
+        //     .then(dashboard => {
+        //       if (
+        //         metricname === req.body.metrics[req.body.metrics.length - 1]
+        //       ) {
+        //         console.log(dashboard);
+        //         res.render("auth/dashboard/ga-metrics", {
+        //           dashboard: dashboard
+        //         });
+        //       }
+        //     });
+        // })
+        // .catch(err => console.log(err));
+      });
+      Promise.all(promises).then(results => {
+        const metricids = results.map(metric => metric._id);
+        console.log(metricids);
+
+        dashboard.metrics = metricids;
+        dashboard
+          .save()
+          .then((dashboard) => {
+            res.render("auth/dashboard/ga-metrics", {dashboard: dashboard})
+          })
+          .catch(err => {
+            console.log(err);
+          });
       });
     } else {
       console.log("erreur");
@@ -182,7 +235,7 @@ router.post("/signup", (req, res, next) => {
 // Voir la page de profil
 router.get("/profile", (req, res, next) => {
   User.findOne({ _id: req.user._id }, (err, user) => {
-    console.log(user);
+    // console.log(user);
     if (user) {
       res.render("auth/profile", { user: user });
     } else {
