@@ -38,10 +38,20 @@ router.get("/dashboard/ga-metrics", (req, res, next) => {
 
 // DASHBOARD CREATION - STEP 1 : define the name and the description of the dashboard
 router.get("/dashboard/dashboardDescription", (req, res, next) => {
-  res.render("auth/dashboard/dashboardDescription", {
-    message: req.flash("error")
+  User.findOne({ _id: req.user._id }, (err, user) => {
+    if (user) {
+      res.render(
+        "auth/dashboard/dashboardDescription",
+        {
+          user: user,
+          message: req.flash("error") 
+        });
+    } else {
+      console.log("erreur");
+    }
   });
 });
+
 
 router.post("/dashboard/dashboardDescription", (req, res, next) => {
   const userid = req.user._id;
@@ -80,11 +90,15 @@ router.post("/dashboard/dashboardDatasources", (req, res, next) => {
 
   Dashboard.findOne({ _id: req.body.dashboardid }, (err, dashboard) => {
     // console.log(dashboard);
-    if (dashboard) {
-      res.render("auth/dashboard/dashboardMetrics", { dashboard: dashboard });
-    } else {
-      console.log("erreur");
-    }
+
+    User.findOne({ _id: req.user._id }, (err, user) => {
+      // console.log(user);
+      if (user) {
+        res.render("auth/dashboard/dashboardMetrics", {user: user, dashboard: dashboard });
+      } else {
+        console.log("erreur");
+      }
+    });
   });
 });
 
@@ -103,17 +117,14 @@ router.get("/dashboard/dashboardMetrics/:id", (req, res, next) => {
   });
 });
 
+
 // _________ PAS BON : ne remplit pas le tableau de metrics du dashboard en question _________
 router.post("/dashboard/dashboardMetrics", (req, res, next) => {
   // console.log(req.body);
-
   Dashboard.findOne({ _id: req.body.dashboardid }, (err, dashboard) => {
+    
     // console.log(dashboard);
     if (dashboard) {
-      // Tableau des noms des metrics
-      // req.body.metrics.forEach(metricname => {
-      //   Metric.findOne({ name: metricname });
-
       // Tableau des id des metrics
       var metrics_id = [];
       var promises = [];
@@ -135,7 +146,17 @@ router.post("/dashboard/dashboardMetrics", (req, res, next) => {
           .populate("metrics")
           .then(dashboard => {
             console.log(dashboard);
-            res.render("auth/dashboard/ga-metrics", { dashboard: dashboard });
+
+
+            User.findOne({ _id: req.user._id }, (err, user) => {
+              // console.log(user);
+              if (user) {
+                res.render("auth/dashboard/ga-metrics", {dashboard: dashboard, user: user });
+              } else {
+                console.log("erreur");
+              }
+            });
+
           })
           .catch(err => {
             console.log(err);
