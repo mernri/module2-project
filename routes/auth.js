@@ -19,9 +19,6 @@ const bcrypt = require("bcrypt");
 const bcryptSalt = 10;
 
 
-<<<<<<< HEAD
-
-=======
 // Signup form
 router.get("/signup", (req, res, next) => {
   res.render("auth/signup");
@@ -63,7 +60,6 @@ router.post("/signup", (req, res, next) => {
 
 
 // Login
->>>>>>> de4517e5cafa7e2e1c9b48b8036bb9822d01d92a
 router.get("/login", (req, res, next) => {
 
   res.render("auth/login", { message: req.flash("error") });
@@ -92,35 +88,10 @@ router.post(
 
 );
 
-<<<<<<< HEAD
-
-
-// redirects the user to his dashboard
-
-router.get("/dashboard/ga-metrics", (req, res, next) => {
-
-  User.findOne({ _id: req.user._id }, (err, user) => {
-
-    // console.log(user);
-
-    if (user) {
-
-      res.render("auth/dashboard/ga-metrics", { user: user });
-
-    } else {
-
-      console.log("erreur");
-
-    }
-
-  });
-
-=======
 // log out
 router.get("/logout", (req, res) => {
   req.logout();
   res.redirect("/");
->>>>>>> de4517e5cafa7e2e1c9b48b8036bb9822d01d92a
 });
 
 
@@ -285,15 +256,6 @@ router.get("/dashboard/dashboardMetrics/:id", (req, res, next) => {
 
 });
 
-<<<<<<< HEAD
-
-
-
-
-// _________ PAS BON : ne remplit pas le tableau de metrics du dashboard en question _________
-
-=======
->>>>>>> de4517e5cafa7e2e1c9b48b8036bb9822d01d92a
 router.post("/dashboard/dashboardMetrics", (req, res, next) => {
 
   // console.log(req.body);
@@ -390,78 +352,6 @@ router.post("/dashboard/dashboardMetrics", (req, res, next) => {
 
 });
 
-<<<<<<< HEAD
-
-
-router.get("/signup", (req, res, next) => {
-
-  res.render("auth/signup");
-
-});
-
-
-
-router.post("/signup", (req, res, next) => {
-
-  const username = req.body.username;
-
-  const password = req.body.password;
-
-  if (username === "" || password === "") {
-
-    res.render("auth/signup", { message: "Indicate username and password" });
-
-    return;
-
-  }
-
-
-
-  User.findOne({ username }, "username", (err, user) => {
-
-    if (user !== null) {
-
-      res.render("auth/signup", { message: "The username already exists" });
-
-      return;
-
-    }
-
-
-
-    const salt = bcrypt.genSaltSync(bcryptSalt);
-
-    const hashPass = bcrypt.hashSync(password, salt);
-
-
-
-    const newUser = new User({
-
-      username,
-
-      password: hashPass
-
-    });
-
-
-
-    newUser
-
-      .save()
-
-      .then(() => {
-
-        res.redirect("/");
-
-      })
-
-      .catch(err => {
-
-        res.render("auth/signup", { message: "Something went wrong" });
-
-      });
-
-=======
 
 // redirects the user to his dashboard
 router.get("/dashboard/ga-metrics", (req, res, next) => {
@@ -472,19 +362,12 @@ router.get("/dashboard/ga-metrics", (req, res, next) => {
     } else {
       console.log("erreur");
     }
->>>>>>> de4517e5cafa7e2e1c9b48b8036bb9822d01d92a
   });
 
 });
 
 
-<<<<<<< HEAD
-
-// Voir la page de profil
-
-=======
 // See page de profil
->>>>>>> de4517e5cafa7e2e1c9b48b8036bb9822d01d92a
 router.get("/profile", (req, res, next) => {
 
   User.findOne({ _id: req.user._id }, (err, user) => {
@@ -493,15 +376,10 @@ router.get("/profile", (req, res, next) => {
 
     if (user) {
 
-<<<<<<< HEAD
-      res.render("auth/profile", { user: user });
-
-=======
     Dashboard.find({owner: req.user._id }, (err, dashboards) => {
       console.log("le dashboard qui a comme owner mon user est : " + '\n' + dashboards);
       res.render("auth/profile", { user: user, dashboards: dashboards });
     })
->>>>>>> de4517e5cafa7e2e1c9b48b8036bb9822d01d92a
     } else {
 
       console.log("erreur");
@@ -512,18 +390,6 @@ router.get("/profile", (req, res, next) => {
 
 });
 
-<<<<<<< HEAD
-
-
-router.get("/logout", (req, res) => {
-
-  req.logout();
-
-  res.redirect("/");
-
-});
-=======
->>>>>>> de4517e5cafa7e2e1c9b48b8036bb9822d01d92a
 
 
 
