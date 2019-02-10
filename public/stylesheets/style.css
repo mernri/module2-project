@@ -4,10 +4,14 @@ body {
 
 .home-logo {
   height: 550px;
-  background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url("/images/home.png");
+  background: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)), url("/images/home.png");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center; }
+
+.value-proposition {
+  color: white;
+  margin-top: 0px; }
 
 .fdb-block {
   padding-bottom: 100px; }
