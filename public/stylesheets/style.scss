@@ -3,8 +3,19 @@ body {
   background-color: #f5f7fa;
 }
 
-.section-1 {
-  height: 300px;
+.home-logo {
+  height: 550px;
+  background: 
+  linear-gradient(
+    rgba(0, 0, 0, 0.45), 
+    rgba(0, 0, 0, 0.45)
+  ),
+  url("/images/home.png");
+  background-repeat: no-repeat;
+  background-size: cover; 
+  background-position: center;
+
+
 }
 
 .fdb-block {
@@ -28,6 +39,10 @@ body {
   background-color: white;
 }
 
+.navbar {
+margin-bottom: 0;
+}
+
 .navbar-nav {
   list-style: none;
 }
@@ -45,9 +60,10 @@ body {
 // Header's text
 .navbar-brand b{
   color: black;
+  font-size: 20px;
 }
 .navbar-brand {
-  padding-top: 20px;
+  padding-top: 15px;
 }
 
 .btn-login {
