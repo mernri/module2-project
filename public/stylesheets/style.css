@@ -118,6 +118,9 @@ footer a {
   margin-top: 10%;
   margin-left: 20%; }
 
+.card-img-top {
+  width: 80%; }
+
 ul {
   list-style: none; }
 

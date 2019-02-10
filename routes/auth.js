@@ -49,11 +49,6 @@ router.post("/signup", (req, res, next) => {
   });
 });
 
-// log out
-router.get("/logout", (req, res) => {
-  req.logout();
-  res.redirect("/");
-});
 
 // Login
 router.get("/login", (req, res, next) => {
@@ -70,6 +65,12 @@ router.post(
     passReqToCallback: true
   })
 );
+
+// log out
+router.get("/logout", (req, res) => {
+  req.logout();
+  res.redirect("/");
+});
 
 // DASHBOARD CREATION - STEP 1 : define the name and the description of the dashboard
 router.get("/dashboard/dashboardDescription", (req, res, next) => {
@@ -220,7 +221,11 @@ router.get("/profile", (req, res, next) => {
   User.findOne({ _id: req.user._id }, (err, user) => {
     // console.log(user);
     if (user) {
-      res.render("auth/profile", { user: user });
+
+    Dashboard.find({owner: req.user._id }, (err, dashboards) => {
+      console.log("le dashboard qui a comme owner mon user est : " + '\n' + dashboards);
+      res.render("auth/profile", { user: user, dashboards: dashboards });
+    })
     } else {
       console.log("erreur");
     }
