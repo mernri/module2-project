@@ -9,13 +9,12 @@ const Metric = require("../models/Metric");
 const bcrypt = require("bcrypt");
 const bcryptSalt = 10;
 
-
 // Signup form
 router.get("/signup", (req, res, next) => {
   res.render("auth/signup");
 });
 
-// Creates a user 
+// Creates a user
 router.post("/signup", (req, res, next) => {
   const username = req.body.username;
   const password = req.body.password;
@@ -49,7 +48,6 @@ router.post("/signup", (req, res, next) => {
   });
 });
 
-
 // Login
 router.get("/login", (req, res, next) => {
   res.render("auth/login", { message: req.flash("error") });
@@ -76,18 +74,15 @@ router.get("/logout", (req, res) => {
 router.get("/dashboard/dashboardDescription", (req, res, next) => {
   User.findOne({ _id: req.user._id }, (err, user) => {
     if (user) {
-      res.render(
-        "auth/dashboard/dashboardDescription",
-        {
-          user: user,
-          message: req.flash("error") 
-        });
+      res.render("auth/dashboard/dashboardDescription", {
+        user: user,
+        message: req.flash("error")
+      });
     } else {
       console.log("erreur");
     }
   });
 });
-
 
 router.post("/dashboard/dashboardDescription", (req, res, next) => {
   const userid = req.user._id;
@@ -130,7 +125,10 @@ router.post("/dashboard/dashboardDatasources", (req, res, next) => {
     User.findOne({ _id: req.user._id }, (err, user) => {
       // console.log(user);
       if (user) {
-        res.render("auth/dashboard/dashboardMetrics", {user: user, dashboard: dashboard });
+        res.render("auth/dashboard/dashboardMetrics", {
+          user: user,
+          dashboard: dashboard
+        });
       } else {
         console.log("erreur");
       }
@@ -156,7 +154,6 @@ router.get("/dashboard/dashboardMetrics/:id", (req, res, next) => {
 router.post("/dashboard/dashboardMetrics", (req, res, next) => {
   // console.log(req.body);
   Dashboard.findOne({ _id: req.body.dashboardid }, (err, dashboard) => {
-    
     // console.log(dashboard);
     if (dashboard) {
       // Tableau des id des metrics
@@ -181,16 +178,17 @@ router.post("/dashboard/dashboardMetrics", (req, res, next) => {
           .then(dashboard => {
             console.log(dashboard);
 
-
             User.findOne({ _id: req.user._id }, (err, user) => {
               // console.log(user);
               if (user) {
-                res.render("auth/dashboard/ga-metrics", {dashboard: dashboard, user: user });
+                res.render("auth/dashboard/ga-metrics", {
+                  dashboard: dashboard,
+                  user: user
+                });
               } else {
                 console.log("erreur");
               }
             });
-
           })
           .catch(err => {
             console.log(err);
@@ -202,35 +200,36 @@ router.post("/dashboard/dashboardMetrics", (req, res, next) => {
   });
 });
 
-
-// redirects the user to his dashboard
-router.get("/dashboard/ga-metrics", (req, res, next) => {
-  User.findOne({ _id: req.user._id }, (err, user) => {
-    // console.log(user);
-    if (user) {
-      res.render("auth/dashboard/ga-metrics", { user: user });
-    } else {
-      console.log("erreur");
-    }
-  });
-});
-
-
 // See page de profil
 router.get("/profile", (req, res, next) => {
   User.findOne({ _id: req.user._id }, (err, user) => {
     // console.log(user);
     if (user) {
-
-    Dashboard.find({owner: req.user._id }, (err, dashboards) => {
-      console.log("le dashboard qui a comme owner mon user est : " + '\n' + dashboards);
-      res.render("auth/profile", { user: user, dashboards: dashboards });
-    })
+      Dashboard.find({ owner: req.user._id }, (err, dashboards) => {
+        console.log(
+          "le dashboard qui a comme owner mon user est : " + "\n" + dashboards
+        );
+        res.render("auth/profile", { user: user, dashboards: dashboards });
+      });
     } else {
       console.log("erreur");
     }
   });
 });
 
+// THIS ROUTE DOESN'T WORK FOR THE MOMENT
+
+// redirects the user to a specific dashboard
+router.get("/dashboard/ga-metrics/", (req, res, next) => {
+    User.findOne({ _id: req.user._id }, (err, user) => {
+      if (user) {
+        res.render("auth/dashboard/ga-metrics", {
+          user: user,
+        });
+      } else {
+        console.log("erreur");
+      }
+    });
+});
 
 module.exports = router;
