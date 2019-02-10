@@ -1,13 +1,37 @@
 body {
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  font-family: Circular, Helvetica, Arial, sans-serif;
   background-color: #f5f7fa; }
 
-.home-logo {
-  height: 450px;
-  background: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)), url("/images/home.png");
+.home-header {
+  height: 470px;
+  background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.8)), url("/images/home.png");
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: center; }
+  background-position: center;
+  padding-right: 8%; }
+
+.home-header h1 {
+  color: white;
+  font-size: 40px;
+  padding-top: 150px;
+  display: block;
+  margin-left: 8%;
+  text-align: center; }
+
+.home-header p {
+  color: white;
+  font-size: 18px;
+  font-weight: lighter;
+  letter-spacing: 2px;
+  display: block;
+  margin-left: 9%;
+  text-align: center; }
+
+.home-btn a {
+  font-size: 18px;
+  padding: 5px 15px 5px 15px;
+  margin-left: 50%; }
 
 .value-proposition {
   color: white;
