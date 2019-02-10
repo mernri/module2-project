@@ -1,15 +1,9 @@
 {{#if user}}
-<h1> {{user.username}}'s Dashboards </h1>
-
 
 <div class="cards-container">
-   {{!-- on appelle le contenu du partial dashboardPartial --}}
-   <div class="col-sm-3 dashboard-card">
-      <div class="card card-inverse card-primary text-center">
-         <div class="card-block">
-            <a href="/auth/dashboard/dashboardDescription" class="btn btn-primary">Add a new dashboard</a>
-         </div>
-      </div>
+   <div class="dashboards-header">
+      <div class="dashboards-title"> <h1> My Dashboards </h1> </div>
+      <div class="dashboards-button"> <a href="/auth/dashboard/dashboardDescription" class="btn dashboard-button">Add a dashboard</a></div>
    </div>
 
    {{!-- on appelle le contenu du partial dashboardPartial --}}

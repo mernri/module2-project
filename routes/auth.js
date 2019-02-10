@@ -138,16 +138,18 @@ router.post("/dashboard/dashboardDatasources", (req, res, next) => {
 
 // DASHBOARD CREATION - STEP 3 : select metrics
 router.get("/dashboard/dashboardMetrics/:id", (req, res, next) => {
-  User.findOne({ _id: req.user._id }, (err, user) => {
-    // console.log(user);
-    if (user) {
-      res.render("auth/dashboard/dashboardMetrics", {
-        user: user,
-        dashboard: req.params.id
-      });
-    } else {
-      console.log("erreur");
-    }
+  Dashboard.findOne({ _id: req.params.id }, (err, dashboard) => {
+    User.findOne({ _id: req.user._id }, (err, user) => {
+      // console.log(user);
+      if (user) {
+        res.render("auth/dashboard/dashboardMetrics:id", {
+          user: user,
+          dashboard: req.params.id
+        });
+      } else {
+        console.log("erreur");
+      }
+    });
   });
 });
 
@@ -221,15 +223,15 @@ router.get("/profile", (req, res, next) => {
 
 // redirects the user to a specific dashboard
 router.get("/dashboard/ga-metrics/", (req, res, next) => {
-    User.findOne({ _id: req.user._id }, (err, user) => {
-      if (user) {
-        res.render("auth/dashboard/ga-metrics", {
-          user: user,
-        });
-      } else {
-        console.log("erreur");
-      }
-    });
+  User.findOne({ _id: req.user._id }, (err, user) => {
+    if (user) {
+      res.render("auth/dashboard/ga-metrics", {
+        user: user
+      });
+    } else {
+      console.log("erreur");
+    }
+  });
 });
 
 module.exports = router;
