@@ -1,21 +1,55 @@
 body {
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  font-family: Circular, Helvetica, Arial, sans-serif;
   background-color: #f5f7fa; }
 
-.section-1 {
-  height: 300px; }
+.home-header {
+  height: 470px;
+  background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.8)), url("/images/home.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  padding-right: 8%; }
+
+.home-header h1 {
+  color: white;
+  font-size: 35px;
+  padding-top: 150px;
+  display: block;
+  margin-left: 8%;
+  text-align: center; }
+
+.home-header p {
+  color: white;
+  font-size: 18px;
+  font-weight: lighter;
+  letter-spacing: 2px;
+  display: block;
+  margin-left: 9%;
+  text-align: center; }
+
+.home-btn a {
+  font-size: 18px;
+  padding: 5px 15px 5px 15px;
+  display: block;
+  margin-left: 45%;
+  margin-right: 35%; }
+
+.value-proposition {
+  color: white;
+  margin-top: 0px; }
 
 .fdb-block {
   padding-bottom: 100px; }
-
-footer {
-  height: 100px; }
 
 .navbar {
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.05);
   border: none;
   height: 9%;
   background-color: white; }
+
+.navbar {
+  margin-bottom: 0; }
 
 .navbar-nav {
   list-style: none; }
@@ -24,11 +58,15 @@ footer {
   padding-right: 20px;
   padding-top: 5px; }
 
+.nav-logo {
+  margin-top: 8px; }
+
 .navbar-brand b {
-  color: black; }
+  color: black;
+  font-size: 20px; }
 
 .navbar-brand {
-  padding-top: 20px; }
+  padding-top: 15px; }
 
 .btn-login {
   padding-top: 15px;
@@ -63,7 +101,11 @@ footer a {
   .pic {
     display: none; }
   .text p {
-    display: none; } }
+    display: none; }
+  .home-header p {
+    display: none; }
+  .home-header h1 {
+    font-size: 25px; } }
 
 .login-content {
   display: flex;
@@ -119,7 +161,44 @@ footer a {
   margin-left: 20%; }
 
 .card-img-top {
-  width: 80%; }
+  width: 100%; }
+
+.dashboard-card {
+  margin: 5px 20px 30px 10px;
+  padding: 0px;
+  background-color: white;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.39); }
+
+.card-block {
+  padding: 10px;
+  text-align: center; }
+
+.open-dshbrd-btn {
+  background-color: #ff4e78;
+  color: white;
+  margin-bottom: 10px; }
+
+.dashboards-header div {
+  display: inline-block;
+  width: 300px;
+  min-height: 50px;
+  height: auto;
+  margin-bottom: 30px; }
+
+.dashboard-button {
+  padding-bottom: 10px;
+  background-color: #ff4e78;
+  color: white; }
+
+.a-btn-slide-text strong {
+  color: #04b8ff; }
+
+.a-btn-slide-text span {
+  color: #04b8ff; }
+
+.page-layout {
+  width: 90%;
+  margin: 0 auto; }
 
 ul {
   list-style: none; }
@@ -130,5 +209,11 @@ ul.twoxtwo li {
 
 .d-none {
   display: none; }
+
+.edit-view-delete {
+  border-top: 1px solid #e7eaed; }
+
+.evd {
+  display: inline-block; }
 
 /*# sourceMappingURL=style.css.map */

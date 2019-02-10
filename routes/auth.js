@@ -140,16 +140,18 @@ router.post("/dashboard/dashboardDatasources", (req, res, next) => {
 // DASHBOARD CREATION - STEP 3 : select metrics
 
 router.get("/dashboard/dashboardMetrics/:id", (req, res, next) => {
-  User.findOne({ _id: req.user._id }, (err, user) => {
-    // console.log(user);
-    if (user) {
-      res.render("auth/dashboard/dashboardMetrics", {
-        user: user,
-        dashboard: req.params.id
-      });
-    } else {
-      console.log("erreur");
-    }
+  Dashboard.findOne({ _id: req.params.id }, (err, dashboard) => {
+    User.findOne({ _id: req.user._id }, (err, user) => {
+      // console.log(user);
+      if (user) {
+        res.render("auth/dashboard/dashboardMetrics:id", {
+          user: user,
+          dashboard: req.params.id
+        });
+      } else {
+        console.log("erreur");
+      }
+    });
   });
 });
 
@@ -210,18 +212,26 @@ router.post("/dashboard/dashboardMetrics", (req, res, next) => {
   });
 });
 
+<<<<<<< HEAD
 // redirects the user to his dashboard
 router.get("/dashboard/ga-metrics", (req, res, next) => {
+=======
+// See page de profil
+router.get("/profile", (req, res, next) => {
+>>>>>>> 4119d1900a06b5647a5d9def6fc13b40f1c2253b
   User.findOne({ _id: req.user._id }, (err, user) => {
     // console.log(user);
     if (user) {
-      res.render("auth/dashboard/ga-metrics", { user: user });
+      Dashboard.find({ owner: req.user._id }, (err, dashboards) => {
+        res.render("auth/profile", { user: user, dashboards: dashboards });
+      });
     } else {
       console.log("erreur");
     }
   });
 });
 
+<<<<<<< HEAD
 // See page de profil
 router.get("/profile", (req, res, next) => {
   User.findOne({ _id: req.user._id }, (err, user) => {
@@ -233,6 +243,15 @@ router.get("/profile", (req, res, next) => {
           "le dashboard qui a comme owner mon user est : " + "\n" + dashboards
         );
         res.render("auth/profile", { user: user, dashboards: dashboards });
+=======
+// THIS ROUTE DOESN'T WORK FOR THE MOMENT
+// redirects the user to a specific dashboard
+router.get("/dashboard/ga-metrics/", (req, res, next) => {
+  User.findOne({ _id: req.user._id }, (err, user) => {
+    if (user) {
+      res.render("auth/dashboard/ga-metrics", {
+        user: user
+>>>>>>> 4119d1900a06b5647a5d9def6fc13b40f1c2253b
       });
     } else {
       console.log("erreur");
@@ -240,4 +259,19 @@ router.get("/profile", (req, res, next) => {
   });
 });
 
+<<<<<<< HEAD
+=======
+//  POST route to delete a dashboard
+router.post("/dashboard/:id/delete", (req, res, next) => {
+  User.findOne({ _id: req.user._id }, (err, user) => {
+    let dashboardid = req.params.id;
+    Dashboard.findByIdAndRemove({ _id: dashboardid }).then(dashboard => {
+      res.redirect("/auth/profile")
+    });
+  }).catch(error => {
+    console.log(error);
+  });
+});
+
+>>>>>>> 4119d1900a06b5647a5d9def6fc13b40f1c2253b
 module.exports = router;
