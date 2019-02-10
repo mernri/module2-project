@@ -133,7 +133,8 @@ footer a {
 
 .open-dshbrd-btn {
   background-color: #FF4E78;
-  color: white; }
+  color: white;
+  margin-bottom: 10px; }
 
 .dashboards-header div {
   display: inline-block;
@@ -164,5 +165,8 @@ ul.twoxtwo li {
 
 .d-none {
   display: none; }
+
+.edit-view-delete {
+  border-top: 1px solid #E7EAED; }
 
 /*# sourceMappingURL=style.css.map */

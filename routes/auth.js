@@ -234,4 +234,19 @@ router.get("/dashboard/ga-metrics/", (req, res, next) => {
   });
 });
 
+
+//  POST route to delete a dashboard
+router.post("/dashboard/:id/delete", (req, res, next) => {
+  let dashboardid = req.params.id;
+  Dashboard.findByIdAndRemove({ _id: dashboardid })
+    .then(dashboard => {
+      res.render("/auth/profile", {
+        dashboard: dashboard
+      });
+    })
+    .catch(error => {
+      console.log(error);
+    });
+});
+
 module.exports = router;

@@ -5,7 +5,40 @@
     <div class="card-block">
       <h4 class="card-title">{{this.name}}</h4>
       <p class="card-text">{{this.description}}</p>
-      <a href="/dashboard/dashboardMetrics/{{this.id}}" class="btn open-dshbrd-btn">Open</a>
+      <a href="/dashboard/dashboardMetrics/{{this._id}}" class="btn open-dshbrd-btn">Open</a>
+
+      {{!-- Section edit view delete --}}
+      <div class="edit-view-delete">
+        <div class="row">
+
+          <span class="evd">
+            <a href="#" class="btn a-btn-slide-text">
+              <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+              <span><strong>Edit</strong></span>
+            </a>
+          </span>
+
+          <span class="evd">
+            <a href="#" class="btn a-btn-slide-text">
+              <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+              <span><strong>View</strong></span>
+            </a>
+          </span>
+
+          <span class="evd">
+            <a href="#" class="btn a-btn-slide-text">
+              <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+              <span><strong>Delete</strong></span>
+            </a>
+          </span>
+
+
+        </div>
+      </div>
+
+
     </div>
   </div>
+</div>
+</div>
 </div>
