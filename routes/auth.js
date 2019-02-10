@@ -1,30 +1,21 @@
 const express = require("express");
-
 const passport = require("passport");
-
 const router = express.Router();
-
 const User = require("../models/User");
-
 const Dashboard = require("../models/Dashboard");
-
 const Metric = require("../models/Metric");
-
-
 
 // Bcrypt to encrypt passwords
 
 const bcrypt = require("bcrypt");
-
 const bcryptSalt = 10;
-
 
 // Signup form
 router.get("/signup", (req, res, next) => {
   res.render("auth/signup");
 });
 
-// Creates a user 
+// Creates a user
 router.post("/signup", (req, res, next) => {
   const username = req.body.username;
   const password = req.body.password;
@@ -58,34 +49,20 @@ router.post("/signup", (req, res, next) => {
   });
 });
 
-
 // Login
 router.get("/login", (req, res, next) => {
-
   res.render("auth/login", { message: req.flash("error") });
-
 });
-
-
 
 // If login is ok, the user is redirected to his profile
 
-router.post(
-
-  "/login",
-
+router.post("/login",
   passport.authenticate("local", {
-
     successRedirect: "/auth/profile",
-
     failureRedirect: "/auth/login",
-
     failureFlash: true,
-
     passReqToCallback: true
-
   })
-
 );
 
 // log out
@@ -94,264 +71,144 @@ router.get("/logout", (req, res) => {
   res.redirect("/");
 });
 
-
-
 // DASHBOARD CREATION - STEP 1 : define the name and the description of the dashboard
 
 router.get("/dashboard/dashboardDescription", (req, res, next) => {
-
   User.findOne({ _id: req.user._id }, (err, user) => {
-
     if (user) {
-
-      res.render(
-
-        "auth/dashboard/dashboardDescription",
-
-        {
-
-          user: user,
-
-          message: req.flash("error") 
-
-        });
-
+      res.render("auth/dashboard/dashboardDescription", {
+        user: user,
+        message: req.flash("error")
+      });
     } else {
-
       console.log("erreur");
-
     }
-
   });
-
 });
-
-
-
-
 
 router.post("/dashboard/dashboardDescription", (req, res, next) => {
-
   const userid = req.user._id;
-
   const dashboardname = req.body.dashboardname;
-
   const dashboarddescription = req.body.dashboarddescription;
 
-
-
   const newDashboard = new Dashboard({
-
     owner: userid,
-
     name: dashboardname,
-
     description: dashboarddescription
-
   });
-
-
 
   newDashboard.save().then(dashboard => {
-
     res.redirect("dashboardDatasources/" + dashboard._id);
-
   });
-
 });
-
-
 
 // DASHBOARD CREATION - STEP 2 : select datasources
 
-
-
 router.get("/dashboard/dashboardDatasources/:id", (req, res, next) => {
-
   User.findOne({ _id: req.user._id }, (err, user) => {
-
     // console.log(user)
 
     if (user) {
-
       res.render("auth/dashboard/dashboardDatasources", {
-
         user: user,
-
         dashboard: req.params.id
-
       });
-
     } else {
-
       console.log("erreur");
-
     }
-
   });
-
 });
-
-
 
 router.post("/dashboard/dashboardDatasources", (req, res, next) => {
-
   // console.log(req.body);
-
-
-
   Dashboard.findOne({ _id: req.body.dashboardid }, (err, dashboard) => {
-
     // console.log(dashboard);
-
-
-
     User.findOne({ _id: req.user._id }, (err, user) => {
-
       // console.log(user);
-
       if (user) {
-
-        res.render("auth/dashboard/dashboardMetrics", {user: user, dashboard: dashboard });
-
+        res.render("auth/dashboard/dashboardMetrics", {
+          user: user,
+          dashboard: dashboard
+        });
       } else {
-
         console.log("erreur");
-
       }
-
     });
-
   });
-
 });
-
-
 
 // DASHBOARD CREATION - STEP 3 : select metrics
 
 router.get("/dashboard/dashboardMetrics/:id", (req, res, next) => {
-
   User.findOne({ _id: req.user._id }, (err, user) => {
-
     // console.log(user);
-
     if (user) {
-
       res.render("auth/dashboard/dashboardMetrics", {
-
         user: user,
-
         dashboard: req.params.id
-
       });
-
     } else {
-
       console.log("erreur");
-
     }
-
   });
-
 });
 
 router.post("/dashboard/dashboardMetrics", (req, res, next) => {
-
   // console.log(req.body);
-
   Dashboard.findOne({ _id: req.body.dashboardid }, (err, dashboard) => {
-
-    
-
     // console.log(dashboard);
-
     if (dashboard) {
-
       // Tableau des id des metrics
-
       var metrics_id = [];
-
       var promises = [];
 
-
-
       req.body.metrics.forEach(metric => {
-
         promises.push(Metric.findOne({ name: metric }));
-
       });
 
       Promise.all(promises).then(results => {
-
         const metricids = results.map(metric => metric._id);
 
         console.log(metricids);
 
-
-
         Dashboard.findByIdAndUpdate(
-
           dashboard._id,
 
           {
-
             $push: { metrics: metricids }
-
           },
 
           { new: true }
-
         )
 
           .populate("metrics")
 
           .then(dashboard => {
-
             console.log(dashboard);
 
-
-
-
-
             User.findOne({ _id: req.user._id }, (err, user) => {
-
               // console.log(user);
 
               if (user) {
-
-                res.render("auth/dashboard/ga-metrics", {dashboard: dashboard, user: user });
-
+                res.render("auth/dashboard/ga-metrics", {
+                  dashboard: dashboard,
+                  user: user
+                });
               } else {
-
                 console.log("erreur");
-
               }
-
             });
-
-
-
           })
 
           .catch(err => {
-
             console.log(err);
-
           });
-
       });
-
     } else {
-
       console.log("erreur");
-
     }
-
   });
-
 });
-
 
 // redirects the user to his dashboard
 router.get("/dashboard/ga-metrics", (req, res, next) => {
@@ -363,35 +220,24 @@ router.get("/dashboard/ga-metrics", (req, res, next) => {
       console.log("erreur");
     }
   });
-
 });
-
 
 // See page de profil
 router.get("/profile", (req, res, next) => {
-
   User.findOne({ _id: req.user._id }, (err, user) => {
-
     // console.log(user);
 
     if (user) {
-
-    Dashboard.find({owner: req.user._id }, (err, dashboards) => {
-      console.log("le dashboard qui a comme owner mon user est : " + '\n' + dashboards);
-      res.render("auth/profile", { user: user, dashboards: dashboards });
-    })
+      Dashboard.find({ owner: req.user._id }, (err, dashboards) => {
+        console.log(
+          "le dashboard qui a comme owner mon user est : " + "\n" + dashboards
+        );
+        res.render("auth/profile", { user: user, dashboards: dashboards });
+      });
     } else {
-
       console.log("erreur");
-
     }
-
   });
-
 });
 
-
-
-
 module.exports = router;
-
