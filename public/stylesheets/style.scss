@@ -6,26 +6,22 @@ body {
 
 .home-header {
   height: 470px;
-  background: 
-  linear-gradient(
-    rgba(0, 0, 0, 0.75), 
-    rgba(0, 0, 0, 0.80)
-  ),
-  url("/images/home.png");
+  background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.8)),
+    url("/images/home.png");
   background-repeat: no-repeat;
-  background-size: cover; 
+  background-size: cover;
   background-position: center;
   padding-right: 8%;
 }
 
 .home-header h1 {
   color: white;
-  font-size: 40px;
+  font-size: 35px;
   padding-top: 150px;
   display: block;
   margin-left: 8%;
   text-align: center;
-}  
+}
 
 .home-header p {
   color: white;
@@ -39,9 +35,11 @@ body {
 }
 
 .home-btn a {
- font-size: 18px;
- padding: 5px 15px 5px 15px;
- margin-left: 50%;
+  font-size: 18px;
+  padding: 5px 15px 5px 15px;
+  display: block;
+  margin-left: 45%;
+  margin-right: 35%;
 }
 
 .value-proposition {
@@ -63,7 +61,7 @@ body {
 //   text-align: center;
 // }
 
-.navbar{
+.navbar {
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.05);
   border: none;
   height: 9%;
@@ -71,7 +69,7 @@ body {
 }
 
 .navbar {
-margin-bottom: 0;
+  margin-bottom: 0;
 }
 
 .navbar-nav {
@@ -89,7 +87,7 @@ margin-bottom: 0;
 }
 
 // Header's text
-.navbar-brand b{
+.navbar-brand b {
   color: black;
   font-size: 20px;
 }
@@ -108,7 +106,7 @@ a {
 }
 
 footer a {
-color:green;
+  color: green;
 }
 
 // ____ SIGN UP & Login _______ /
@@ -142,7 +140,6 @@ color:green;
 //   margin: auto;
 // }
 
-
 .pic {
   width: 100%;
 }
@@ -154,6 +151,12 @@ color:green;
   }
   .text p {
     display: none;
+  }
+  .home-header p {
+    display: none;
+  }
+  .home-header h1 {
+    font-size: 25px;
   }
   // .login-image {
   //   margin-right: 0%;
@@ -176,25 +179,25 @@ color:green;
 }
 
 .login-form {
-  margin-left:0px;
+  margin-left: 0px;
   margin: auto;
   width: 50%;
 }
 
 .signup-form {
-  margin-left:0px;
+  margin-left: 0px;
   margin: auto;
   width: 50%;
 }
 
 .feature-image {
-  width: 15%
+  width: 15%;
 }
 
 .pick-datasources {
   padding-top: 10%;
   padding-left: 10%;
-text-align: left;
+  text-align: left;
 }
 
 .ga-logo {
@@ -206,21 +209,21 @@ text-align: left;
   margin-top: 10px;
 }
 
-.datasource{
+.datasource {
   float: left;
   clear: none;
   width: 50%;
   padding: 20px;
 }
 
-.datasources-connect{
+.datasources-connect {
   background: #e7e7e7;
   text-align: center;
-  width: 600px;  
+  width: 600px;
 }
 
 .select-datasources-form {
-  display: inline-block
+  display: inline-block;
 }
 
 .validate-step2 {
@@ -232,36 +235,35 @@ text-align: left;
   width: 100%;
 }
 
-.dashboard-card{
+.dashboard-card {
   margin: 5px 20px 30px 10px;
   padding: 0px;
   background-color: white;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.39);
 }
 
-.card-block{
+.card-block {
   padding: 10px;
   text-align: center;
 }
 
-.open-dshbrd-btn{
-  background-color: #FF4E78;
+.open-dshbrd-btn {
+  background-color: #ff4e78;
   color: white;
   margin-bottom: 10px;
 }
 
-.dashboards-header div{
+.dashboards-header div {
   display: inline-block;
-	width: 300px;
-	min-height: 50px;
+  width: 300px;
+  min-height: 50px;
   height: auto;
   margin-bottom: 30px;
 }
 
-
 .dashboard-button {
   padding-bottom: 10px;
-  background-color: #FF4E78;
+  background-color: #ff4e78;
   color: white;
 }
 
@@ -282,15 +284,22 @@ text-align: left;
   margin: 0 auto;
 }
 
-// mise en page ga-metrics 
-ul {list-style:none}
-ul.twoxtwo li {display:inline-block; width:45%}
-.d-none {display:none}
-
-.edit-view-delete {
-  border-top: 1px solid #E7EAED;
+// mise en page ga-metrics
+ul {
+  list-style: none;
+}
+ul.twoxtwo li {
+  display: inline-block;
+  width: 45%;
+}
+.d-none {
+  display: none;
 }
 
-.evd{
+.edit-view-delete {
+  border-top: 1px solid #e7eaed;
+}
+
+.evd {
   display: inline-block;
-} 
+}

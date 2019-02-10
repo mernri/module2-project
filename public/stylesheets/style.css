@@ -13,7 +13,7 @@ body {
 
 .home-header h1 {
   color: white;
-  font-size: 40px;
+  font-size: 35px;
   padding-top: 150px;
   display: block;
   margin-left: 8%;
@@ -31,7 +31,9 @@ body {
 .home-btn a {
   font-size: 18px;
   padding: 5px 15px 5px 15px;
-  margin-left: 50%; }
+  display: block;
+  margin-left: 45%;
+  margin-right: 35%; }
 
 .value-proposition {
   color: white;
@@ -99,7 +101,11 @@ footer a {
   .pic {
     display: none; }
   .text p {
-    display: none; } }
+    display: none; }
+  .home-header p {
+    display: none; }
+  .home-header h1 {
+    font-size: 25px; } }
 
 .login-content {
   display: flex;
@@ -168,7 +174,7 @@ footer a {
   text-align: center; }
 
 .open-dshbrd-btn {
-  background-color: #FF4E78;
+  background-color: #ff4e78;
   color: white;
   margin-bottom: 10px; }
 
@@ -181,7 +187,7 @@ footer a {
 
 .dashboard-button {
   padding-bottom: 10px;
-  background-color: #FF4E78;
+  background-color: #ff4e78;
   color: white; }
 
 .a-btn-slide-text strong {
@@ -205,7 +211,7 @@ ul.twoxtwo li {
   display: none; }
 
 .edit-view-delete {
-  border-top: 1px solid #E7EAED; }
+  border-top: 1px solid #e7eaed; }
 
 .evd {
   display: inline-block; }
