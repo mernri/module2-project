@@ -218,9 +218,9 @@ text-align: left;
   color: white;
 }
 
-.col-sm-3.dashboard-card {
-  width: 20%
-}
+// .col-sm-2 .dashboard-card {
+//   width: 20%
+// }
 
 .a-btn-slide-text strong {
   color: #04b8ff;
@@ -228,6 +228,11 @@ text-align: left;
 
 .a-btn-slide-text span {
   color: #04b8ff;
+}
+
+.page-layout {
+  width: 90%;
+  margin: 0 auto;
 }
 
 // mise en page ga-metrics 

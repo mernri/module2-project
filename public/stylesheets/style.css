@@ -148,14 +148,15 @@ footer a {
   background-color: #FF4E78;
   color: white; }
 
-.col-sm-3.dashboard-card {
-  width: 20%; }
-
 .a-btn-slide-text strong {
   color: #04b8ff; }
 
 .a-btn-slide-text span {
   color: #04b8ff; }
+
+.page-layout {
+  width: 90%;
+  margin: 0 auto; }
 
 ul {
   list-style: none; }
