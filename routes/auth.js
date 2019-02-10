@@ -208,9 +208,6 @@ router.get("/profile", (req, res, next) => {
     // console.log(user);
     if (user) {
       Dashboard.find({ owner: req.user._id }, (err, dashboards) => {
-        console.log(
-          "le dashboard qui a comme owner mon user est : " + "\n" + dashboards
-        );
         res.render("auth/profile", { user: user, dashboards: dashboards });
       });
     } else {
@@ -220,7 +217,6 @@ router.get("/profile", (req, res, next) => {
 });
 
 // THIS ROUTE DOESN'T WORK FOR THE MOMENT
-
 // redirects the user to a specific dashboard
 router.get("/dashboard/ga-metrics/", (req, res, next) => {
   User.findOne({ _id: req.user._id }, (err, user) => {
@@ -234,19 +230,16 @@ router.get("/dashboard/ga-metrics/", (req, res, next) => {
   });
 });
 
-
 //  POST route to delete a dashboard
 router.post("/dashboard/:id/delete", (req, res, next) => {
-  let dashboardid = req.params.id;
-  Dashboard.findByIdAndRemove({ _id: dashboardid })
-    .then(dashboard => {
-      res.render("/auth/profile", {
-        dashboard: dashboard
-      });
-    })
-    .catch(error => {
-      console.log(error);
+  User.findOne({ _id: req.user._id }, (err, user) => {
+    let dashboardid = req.params.id;
+    Dashboard.findByIdAndRemove({ _id: dashboardid }).then(dashboard => {
+      res.redirect("/auth/profile")
     });
+  }).catch(error => {
+    console.log(error);
+  });
 });
 
 module.exports = router;

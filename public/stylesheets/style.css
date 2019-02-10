@@ -151,8 +151,11 @@ footer a {
 .col-sm-3.dashboard-card {
   width: 20%; }
 
-.page-layout {
-  margin-left: 25px; }
+.a-btn-slide-text strong {
+  color: #04b8ff; }
+
+.a-btn-slide-text span {
+  color: #04b8ff; }
 
 ul {
   list-style: none; }
@@ -166,5 +169,8 @@ ul.twoxtwo li {
 
 .edit-view-delete {
   border-top: 1px solid #E7EAED; }
+
+.evd {
+  display: inline-block; }
 
 /*# sourceMappingURL=style.css.map */

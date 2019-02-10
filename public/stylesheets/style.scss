@@ -222,8 +222,12 @@ text-align: left;
   width: 20%
 }
 
-.page-layout {
-  margin-left: 25px;
+.a-btn-slide-text strong {
+  color: #04b8ff;
+}
+
+.a-btn-slide-text span {
+  color: #04b8ff;
 }
 
 // mise en page ga-metrics 
@@ -235,3 +239,6 @@ ul.twoxtwo li {display:inline-block; width:45%}
   border-top: 1px solid #E7EAED;
 }
 
+.evd{
+  display: inline-block;
+} 
