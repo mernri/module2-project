@@ -212,13 +212,8 @@ router.post("/dashboard/dashboardMetrics", (req, res, next) => {
   });
 });
 
-<<<<<<< HEAD
-// redirects the user to his dashboard
-router.get("/dashboard/ga-metrics", (req, res, next) => {
-=======
 // See page de profil
 router.get("/profile", (req, res, next) => {
->>>>>>> 4119d1900a06b5647a5d9def6fc13b40f1c2253b
   User.findOne({ _id: req.user._id }, (err, user) => {
     // console.log(user);
     if (user) {
@@ -231,19 +226,6 @@ router.get("/profile", (req, res, next) => {
   });
 });
 
-<<<<<<< HEAD
-// See page de profil
-router.get("/profile", (req, res, next) => {
-  User.findOne({ _id: req.user._id }, (err, user) => {
-    // console.log(user);
-
-    if (user) {
-      Dashboard.find({ owner: req.user._id }, (err, dashboards) => {
-        console.log(
-          "le dashboard qui a comme owner mon user est : " + "\n" + dashboards
-        );
-        res.render("auth/profile", { user: user, dashboards: dashboards });
-=======
 // THIS ROUTE DOESN'T WORK FOR THE MOMENT
 // redirects the user to a specific dashboard
 router.get("/dashboard/ga-metrics/", (req, res, next) => {
@@ -251,7 +233,6 @@ router.get("/dashboard/ga-metrics/", (req, res, next) => {
     if (user) {
       res.render("auth/dashboard/ga-metrics", {
         user: user
->>>>>>> 4119d1900a06b5647a5d9def6fc13b40f1c2253b
       });
     } else {
       console.log("erreur");
@@ -259,8 +240,6 @@ router.get("/dashboard/ga-metrics/", (req, res, next) => {
   });
 });
 
-<<<<<<< HEAD
-=======
 //  POST route to delete a dashboard
 router.post("/dashboard/:id/delete", (req, res, next) => {
   User.findOne({ _id: req.user._id }, (err, user) => {
@@ -273,5 +252,4 @@ router.post("/dashboard/:id/delete", (req, res, next) => {
   });
 });
 
->>>>>>> 4119d1900a06b5647a5d9def6fc13b40f1c2253b
 module.exports = router;
