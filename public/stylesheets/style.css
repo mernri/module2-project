@@ -3,7 +3,7 @@ body {
   font-family: Circular, Helvetica, Arial, sans-serif;
   background-color: #f5f7fa; }
 
-.home-header {
+.section-1 {
   height: 470px;
   background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.8)), url("/images/home.png");
   background-repeat: no-repeat;
