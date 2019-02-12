@@ -268,6 +268,7 @@ footer a {
   min-height: 50px;
   height: auto;
   margin-bottom: 30px;
+  text-align: center;
 }
 
 .dashboard-button {
@@ -288,10 +289,12 @@ footer a {
   color: #04b8ff;
 }
 
-.page-layout {
-  width: 90%;
-  margin: 0 auto;
-}
+
+// ATTENTION !!!! C'est cette propriété qui bousille la 1ère carte dans le profil de l'utilisation
+// .page-layout {
+//   width: 90%;
+//   margin: 0 auto;
+// }
 
 // mise en page ga-metrics
 ul {

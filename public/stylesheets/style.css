@@ -190,7 +190,8 @@ footer a {
   width: 300px;
   min-height: 50px;
   height: auto;
-  margin-bottom: 30px; }
+  margin-bottom: 30px;
+  text-align: center; }
 
 .dashboard-button {
   padding-bottom: 10px;
@@ -202,10 +203,6 @@ footer a {
 
 .a-btn-slide-text span {
   color: #04b8ff; }
-
-.page-layout {
-  width: 90%;
-  margin: 0 auto; }
 
 ul {
   list-style: none; }
