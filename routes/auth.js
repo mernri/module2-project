@@ -56,7 +56,8 @@ router.get("/login", (req, res, next) => {
 
 // If login is ok, the user is redirected to his profile
 
-router.post("/login",
+router.post(
+  "/login",
   passport.authenticate("local", {
     successRedirect: "/auth/profile",
     failureRedirect: "/auth/login",
@@ -162,7 +163,7 @@ router.post("/dashboard/dashboardMetrics", (req, res, next) => {
     // console.log(dashboard);
     if (dashboard) {
       // Tableau des id des metrics
-      var metrics_id = [];
+      //var metrics_id = [];
       var promises = [];
 
       req.body.metrics.forEach(metric => {
@@ -265,31 +266,40 @@ router.post("/dashboard/:id/delete", (req, res, next) => {
   });
 });
 
-
 /* GET route to edit dashboard */
-router.get('/dashboard/:id/edit', (req, res, next) => {
-  Dashboard.findOne({_id: req.params.id})
-  .then((dashboard) => {
-    res.render("auth/dashboard/edit", {dashboard: dashboard});
-  })
-  .catch((error) => {
-    console.log(error);
-  })
-});
-
-
-/* POST route to edit dashboard */
-router.post("/dashboard/:id", (req, res, next) => {
-  const { name, description} = req.body;
-  Dashboard.findByIdAndUpdate({ _id: req.params.id }, {name, description})
-      .then((dashboard) => {
-        res.redirect("/auth/profile");
+router.get("/dashboard/:id/edit", (req, res, next) => {
+  Dashboard.findOne({ _id: req.params.id })
+    .then(dashboard => {
+      res.render("auth/dashboard/edit", { dashboard: dashboard });
     })
     .catch(error => {
       console.log(error);
     });
 });
 
+/* POST route to edit dashboard */
+router.post("/dashboard/:id", (req, res, next) => {
+  const { name, description } = req.body;
+  var promises = [];
 
+  req.body.metrics.forEach(metric => {
+    promises.push(Metric.findOne({ name: metric }));
+  });
+
+  Promise.all(promises).then(results => {
+    const metricids = results.map(metric => metric._id);
+    Dashboard.findByIdAndUpdate(req.params.id, {
+      name,
+      description,
+      metrics: metricids
+    })
+      .then(dashboard => {
+        res.redirect("/auth/profile");
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  });
+});
 
 module.exports = router;
