@@ -252,4 +252,31 @@ router.post("/dashboard/:id/delete", (req, res, next) => {
   });
 });
 
+
+/* GET route to edit dashboard */
+router.get('/dashboard/:id/edit', (req, res, next) => {
+  Dashboard.findOne({_id: req.params.id})
+  .then((dashboard) => {
+    res.render("auth/dashboard/edit", {dashboard: dashboard});
+  })
+  .catch((error) => {
+    console.log(error);
+  })
+});
+
+
+/* POST route to edit dashboard */
+router.post("/dashboard/:id", (req, res, next) => {
+  const { name, description} = req.body;
+  Dashboard.findByIdAndUpdate({ _id: req.params.id }, {name, description})
+      .then((dashboard) => {
+        res.redirect("/auth/profile");
+    })
+    .catch(error => {
+      console.log(error);
+    });
+});
+
+
+
 module.exports = router;

@@ -7,16 +7,23 @@
       <h4 class="card-title">{{this.name}}</h4>
       <p class="card-text">{{this.description}}</p>
       <a href="/dashboard/dashboardMetrics/{{this._id}}" class="btn open-dshbrd-btn">Open</a>
-
+      
+      
       {{!-- Section edit view delete --}}
       <div class="edit-view-delete">
         <div class="row">
 
           <span class="evd">
-            <a href="#" class="btn a-btn-slide-text">
-              <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-              <span><strong>Edit</strong></span>
-            </a>
+            <form action="/auth/dashboard/{{this._id}}/edit" method="get">
+            <button type="submit" class="btn a-btn-slide-text"><span class="glyphicon glyphicon-edit"
+                  aria-hidden="true"></span>
+                <span><strong>Edit</strong></span></button>
+            
+            {{!-- <a href="#" class="btn a-btn-slide-text"> --}}
+              {{!-- <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+              <span><strong>Edit</strong></span> --}}
+            {{!-- </a> --}}
+            </form>
           </span>
 
           <span class="evd">
