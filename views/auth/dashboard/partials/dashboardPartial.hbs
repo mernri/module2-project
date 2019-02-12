@@ -13,10 +13,16 @@
         <div class="row">
 
           <span class="evd">
-            <a href="#" class="btn a-btn-slide-text">
-              <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-              <span><strong>Edit</strong></span>
-            </a>
+            <form action="/auth/dashboard/{{this._id}}/edit" method="get">
+            <button type="submit" class="btn a-btn-slide-text"><span class="glyphicon glyphicon-edit"
+                  aria-hidden="true"></span>
+                <span><strong>Edit</strong></span></button>
+            
+            {{!-- <a href="#" class="btn a-btn-slide-text"> --}}
+              {{!-- <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+              <span><strong>Edit</strong></span> --}}
+            {{!-- </a> --}}
+            </form>
           </span>
 
           <span class="evd">
