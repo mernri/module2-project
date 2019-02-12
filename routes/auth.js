@@ -70,29 +70,6 @@ router.get("/logout", (req, res) => {
   res.redirect("/");
 });
 
-// THIS ROUTE DOESN'T WORK FOR THE MOMENT
-// redirects the user to a specific dashboard
-router.get("/dashboard/2/ga-metrics/:id", (req, res, next) => {
-  let dashboardid = req.params.id;
-  console.log(dashboardid);
-  User.findOne({ _id: req.user._id }, (err, user) => {
-    if (user) {
-      Dashboard.findById(dashboardid)
-        .then(dashboard => {
-          res.render("auth/dashboard/ga-metrics", {
-            user: user,
-            dashboard: dashboard
-          });
-        })
-        .catch(error => {
-          console.log(req);
-        });
-    } else {
-      console.log("erreur");
-    }
-  });
-});
-
 // DASHBOARD CREATION - STEP 1 : define the name and the description of the dashboard
 router.get("/dashboard/dashboardDescription", (req, res, next) => {
   User.findOne({ _id: req.user._id }, (err, user) => {
@@ -239,6 +216,31 @@ router.get("/profile", (req, res, next) => {
   });
 });
 
+// redirects the user to a specific dashboard
+router.get("/dashboard/ga-metrics/:id", (req, res, next) => {
+  let dashboardid = req.params.id;
+  console.log("dashboardid" + dashboardid);
+  User.findOne({ _id: req.user._id }, (err, user) => {
+    if (user) {
+      Dashboard.findById(dashboardid)
+        .populate("metrics")
+        .then(dashboard => {
+          console.log("user " + user);
+          console.log("dashboard " + dashboard);
+
+          res.render("auth/dashboard/ga-metrics", {
+            user: user,
+            dashboard: dashboard
+          });
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    } else {
+      console.log("erreur");
+    }
+  });
+});
 
 //  POST route to delete a dashboard
 router.post("/dashboard/:id/delete", (req, res, next) => {
