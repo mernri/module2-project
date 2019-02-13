@@ -1,26 +1,44 @@
-<h2>Edit dashboard</h2>
+<div class="signup box">
 
-<form action="/auth/dashboard/{{dashboard._id}}" method="post">
-  <label for="">Name:</label>
-  <input type="text" name="name" value="{{dashboard.name}}">
-
-  <label for="">Description:</label>
-  <input type="text" name="description" value="{{dashboard.description}}">
-
-  <div class="ga-metrics-selector">
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="ga:sessions" name="metrics[]">
-      <label class="form-check-label metric2" for="inlineCheckbox2">Number of sessions</label>
-    </div>
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="ga:users" name="metrics[]">
-      <label class="form-check-label metric1" for="inlineCheckbox1">Number of users</label>
-    </div>
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="ga:sessionDuration" name="metrics[]">
-      <label class="form-check-label metric3" for="inlineCheckbox2">Session Duration</label>
-    </div>
+  <div class="signup text">
+    <h2>Edit dashboard</h2>
   </div>
 
-  <button type="submit">EDIT</button>
-</form>
+  <div class="signup-content">
+
+    <div class="signup-form">
+
+      <form action="/auth/dashboard/{{dashboard._id}}" method="post" id="form-container">
+        <label for="">Name:</label>
+        <input class="form-control" type="text" name="name" placeholder="{{dashboard.name}}">
+        <br>
+        <label for="">Description:</label>
+        <input class="form-control" type="text" name="description" placeholder="{{dashboard.description}}">
+        <br>
+        <div class="ga-metrics-selector">
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="ga:sessions" name="metrics[]">
+            <label class="form-check-label metric2" for="inlineCheckbox2">Number of sessions</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="ga:users" name="metrics[]">
+            <label class="form-check-label metric1" for="inlineCheckbox1">Number of users</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="ga:sessionDuration"
+              name="metrics[]">
+            <label class="form-check-label metric3" for="inlineCheckbox2">Session Duration</label>
+          </div>
+        </div>
+        <br>
+        <button class="btn btn-light btn-primary" aria-pressed="true">EDIT</button>
+
+
+      </form>
+
+    </div>
+
+  </div>
+
+
+</div>
