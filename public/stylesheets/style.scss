@@ -121,11 +121,13 @@ footer a {
 // ____ SIGN UP & Login _______ /
 
 .box {
+  position: fixed;
+  height: 70%;
+  left: 20%;
   background-color: #ffffff;
-  height: 550px;
   width: 60%;
   margin: auto;
-  margin-top: 80px;
+  margin-top: 30px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   padding: 30px 30px 25px 30px;
 }
@@ -167,6 +169,7 @@ footer a {
   .home-header h1 {
     font-size: 25px;
   }
+
   // .login-image {
   //   margin-right: 0%;
   // }
@@ -187,6 +190,12 @@ footer a {
   margin-top: 10%;
 }
 
+.datasources-content {
+  display: flex;
+  width: 100%;
+  margin-top: 3%;
+}
+
 .login-form {
   margin-left: 0px;
   margin: auto;
@@ -204,18 +213,35 @@ footer a {
 }
 
 .pick-datasources {
-  padding-top: 10%;
+  padding-top: 5%;
   padding-left: 10%;
   text-align: left;
 }
 
 .ga-logo {
-  height: 120px;
+  height: 80px;
 }
 
+// .datasources-connect {
+//   position: relative;
+//   left: 5%;
+// }
+
+.datasources-form {
+  margin-left: 0px;
+  position: relative;
+  left: 5%;
+}
+
+// .datasources-connect {
+//   background: #e7e7e7;
+//   text-align: center;
+//   width: 600px;
+// }
+
 .mc-logo {
-  height: 120px;
-  margin-top: 10px;
+  height: 70px;
+  margin-top: 8px;
 }
 
 .datasource {
@@ -225,18 +251,12 @@ footer a {
   padding: 20px;
 }
 
-.datasources-connect {
-  background: #e7e7e7;
-  text-align: center;
-  width: 600px;
-}
-
 .select-datasources-form {
   display: inline-block;
 }
 
 .validate-step2 {
-  margin-top: 10%;
+  margin-top: 20%;
   margin-left: 20%;
 }
 
@@ -289,7 +309,6 @@ footer a {
   color: #04b8ff;
 }
 
-
 // ATTENTION !!!! C'est cette propriété qui bousille la 1ère carte dans le profil de l'utilisation
 // .page-layout {
 //   width: 90%;
@@ -314,4 +333,23 @@ ul.twoxtwo li {
 
 .evd {
   display: inline-block;
+}
+
+.footer {
+  // position: absolute;
+  // left: 0;
+  // bottom: 0;
+  // width: 100%;
+  // background-color: white;
+  // text-align: center;
+  position: relative;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: #efefef;
+  text-align: center;
+}
+
+.list-inline-item {
+  color: #474747;
 }
