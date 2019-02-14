@@ -270,6 +270,7 @@ router.get("/dashboard/:id/edit", (req, res, next) => {
   User.findOne({ _id: req.user._id }, (err, user) => {
     if (user) {
       Dashboard.findOne({ _id: req.params.id })
+
         .populate("metrics")
         .then(dashboard => {
           const metricNames = dashboard.metrics.map(metric => metric.name);
@@ -283,6 +284,7 @@ router.get("/dashboard/:id/edit", (req, res, next) => {
             dashboard: dashboard,
             metrics: metrics
           });
+
         })
         .catch(error => {
           console.log(error);

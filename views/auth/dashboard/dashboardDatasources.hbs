@@ -2,13 +2,13 @@
 
   <div class="select-datasources text">
     <h2>Where do you want us to pick the data from ? </h2>
-    <h3 class="pick-datasources"> Pick your datasources </h3>
+    <h4 class="pick-datasources"> Pick your datasources </h4>
 
   </div>
 
-  <div class="select-datasources-content">
+  <div class="datasources-content">
 
-    <div class="select-datasources-form">
+    <div class="datasources-form">
       {{!-- START OF FORM --}}
 
       <form action="/auth/dashboard/dashboardDatasources" method="POST" id="form-container">
@@ -72,12 +72,12 @@
             {{!-- Mailchimp connect --}}
             <div class="datasource">
               <img src="http://www.stickpng.com/assets/images/58417f77a6515b1e0ad75a2c.png" class="mc-logo">
-
+              <p style="color:#ff4e78"> <light>Coming Soon !</light> </p>
             </div>
 
           </div>
 
-          <button class="btn btn-light btn-primary validate-step2" aria-pressed="true">Next</button>
+          <button class="btn open-dshbrd-btn validate-step2" aria-pressed="true">Next</button>
 
       </form>
       {{!-- END OF FORM --}}

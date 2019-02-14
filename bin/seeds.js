@@ -7,7 +7,7 @@ const mongoose = require("mongoose");
 const Metric = require("../models/Metric");
 
 mongoose
-  .connect('mongodb://localhost/module2-project', {useNewUrlParser: true})
+  .connect('mongodb://heroku_m0zp5qn8:vl9h8nps7u8drrebujdg70l7ho@ds161724.mlab.com:61724/heroku_m0zp5qn8', {useNewUrlParser: true})
   .then(x => {
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
   })
