@@ -10,10 +10,10 @@
 
       <form action="/auth/dashboard/{{dashboard._id}}" method="post" id="form-container">
         <label for="">Name</label>
-        <input class="form-control" type="text" name="name" placeholder="{{dashboard.name}}">
+        <input class="form-control" type="text" name="name" placeholder="{{dashboard.name}}" value="{{dashboard.name}}">
         <br>
         <label for="">Description</label>
-        <input class="form-control" type="text" name="description" placeholder="{{dashboard.description}}">
+        <input class="form-control" type="text" name="description" placeholder="{{dashboard.description}}" value="{{dashboard.description}}">
         <br>
 
         <div class="ga-metrics-selector">
