@@ -15,30 +15,32 @@
         <label for="">Description:</label>
         <input class="form-control" type="text" name="description" placeholder="{{dashboard.description}}">
         <br>
+
         <div class="ga-metrics-selector">
+
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="ga:sessions" name="metrics[]">
+            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="ga:sessions" name="metrics[]"
+              {{#if metrics.sessions }}checked{{/if}}>
             <label class="form-check-label metric2" for="inlineCheckbox2">Number of sessions</label>
           </div>
+
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="ga:users" name="metrics[]">
+            <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="ga:users" name="metrics[]"
+              {{#if metrics.users }}checked{{/if}}>
             <label class="form-check-label metric1" for="inlineCheckbox1">Number of users</label>
           </div>
+
           <div class="form-check form-check-inline">
             <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="ga:sessionDuration"
-              name="metrics[]">
+              name="metrics[]" {{#if metrics.duration }}checked{{/if}}>
             <label class="form-check-label metric3" for="inlineCheckbox2">Session Duration</label>
           </div>
         </div>
         <br>
+        
         <button class="btn btn-light btn-primary" aria-pressed="true">EDIT</button>
 
-
       </form>
-
     </div>
-
   </div>
-
-
 </div>

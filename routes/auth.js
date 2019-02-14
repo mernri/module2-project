@@ -140,7 +140,6 @@ router.post("/dashboard/dashboardDatasources", (req, res, next) => {
 
 // DASHBOARD CREATION - STEP 3 : select metrics
 
-
 router.get("/dashboard/dashboardMetrics/:id", (req, res, next) => {
   Dashboard.findOne({ _id: req.params.id }, (err, dashboard) => {
     User.findOne({ _id: req.user._id }, (err, user) => {
@@ -268,13 +267,30 @@ router.post("/dashboard/:id/delete", (req, res, next) => {
 
 /* GET route to edit dashboard */
 router.get("/dashboard/:id/edit", (req, res, next) => {
-  Dashboard.findOne({ _id: req.params.id })
-    .then(dashboard => {
-      res.render("auth/dashboard/edit", { dashboard: dashboard });
-    })
-    .catch(error => {
-      console.log(error);
-    });
+  User.findOne({ _id: req.user._id }, (err, user) => {
+    if (user) {
+      Dashboard.findOne({ _id: req.params.id })
+        .populate("metrics")
+        .then(dashboard => {
+          const metricNames = dashboard.metrics.map(metric => metric.name);
+          const metrics = {
+            sessions: metricNames.includes("ga:sessions"),
+            users: metricNames.includes("ga:users"),
+            duration: metricNames.includes("ga:sessionDuration")
+          };
+          res.render("auth/dashboard/edit", {
+            user: user,
+            dashboard: dashboard,
+            metrics: metrics
+          });
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    } else {
+      console.log("erreur");
+    }
+  });
 });
 
 /* POST route to edit dashboard */
@@ -293,6 +309,7 @@ router.post("/dashboard/:id", (req, res, next) => {
       description,
       metrics: metricids
     })
+
       .then(dashboard => {
         res.redirect("/auth/profile");
       })
